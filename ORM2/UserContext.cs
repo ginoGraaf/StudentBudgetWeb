@@ -4,11 +4,12 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace ORM.DataAccess
+namespace ORM2
 {
     public class UserContext : DbContext
     {
-        public UserContext(DbContextOptions <UserContext> options) : base(options) { }
-        public DbSet<Models.User> Users { get; set; }
+        public UserContext(DbContextOptions<UserContext> options) : base(options) { }
+
+        public DbSet<User> Users { get; set; }
     }
 }
