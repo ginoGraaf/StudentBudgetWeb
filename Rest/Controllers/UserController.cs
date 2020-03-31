@@ -22,7 +22,6 @@ namespace Rest.Controllers {
         }
 
         [HttpPost]
-        [Consumes("application/json")]
         public User Post(User user) {
             user.Id = 42;
             return user;
