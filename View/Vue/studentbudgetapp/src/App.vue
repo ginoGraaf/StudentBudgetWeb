@@ -1,28 +1,52 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    
+    <pie :pieData="pieData"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+//import HelloWorld from './components/HelloWorld.vue'
+import Pie from './components/Pie'
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data:()=>
+  {
+    return{
+      pieData:[{color:'#0B6487',value:10},
+      {color:'#9D1F37',value:40},
+      {color:'#F6931C',value:30},
+      {color:'#9A6487',value:10},
+      {color:'#58A384',value:10}]
+    };
+  },
+components:
+  {
+    Pie
   }
 }
 </script>
 
-<style>
+<style lang="css">
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  front-size: 1rem;
+  front-family:tahoma;
+  background-color: #333;
+  color: #fefefe;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+position: relative;
+display: flex;
+justify-content: center;
+align-items: flex-start;
+min-height: 100vh;
+width: 100%;
+padding: 20px;
 }
 </style>
