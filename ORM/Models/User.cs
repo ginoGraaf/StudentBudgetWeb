@@ -15,8 +15,5 @@ namespace ORM.Models
         public string EmailAddress { get; set; }
         public decimal Balance { get; set; }
 
-        public List<Incomes> Incomes { get; set; }
-        public List<Expense> Expenses { get; set; }
-        public List<SavingGoal> SavingGoals { get; set; }
     }
 }

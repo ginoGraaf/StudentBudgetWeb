@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using ORM;
+using DataAccessLibrary;
 
 namespace Rest
 {
@@ -25,7 +25,7 @@ namespace Rest
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ORM.DataAccess.UserContext>(options =>
+            services.AddDbContext<DataAccessLibrary.UserContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
