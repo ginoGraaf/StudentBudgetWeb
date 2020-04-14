@@ -4,20 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Logging;
+using DataAccessLibrary;
 
 namespace Rest.Controllers {
     [ApiController]
     [Route("api/User/")]
     public class UserController: ControllerBase {
-
-        // Sample user database
-        private List<User> users = new List<User> {
-            new User{Id = 0, Name = "Joeri"},
-            new User{Id = 1, Name = "Siora"},
-            new User{Id = 2, Name = "Bram"}
-        };
-        private int Index = 3;
-
         
         private readonly ILogger<UserController> _logger;
 
