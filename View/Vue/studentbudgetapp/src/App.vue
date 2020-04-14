@@ -1,15 +1,18 @@
 <template>
   <div id="app">
-      <Categories v-bind:categories="categories"/>
+    <Header />
+      <Categories v-bind:categories="categories" v-on:del-category="deleteCategory" />
   </div>
 </template>
 
 <script>
+import Header from './components/Header';
 import Categories from './components/Categories';
 
 export default {
   name: 'App',
   components: {
+    Header,
     Categories
   },
   data() {
@@ -17,13 +20,20 @@ export default {
       categories: [
         {
           id: 1,
-          title: "Category one"
+          title: "Category one",
+          bedrag: "€1.10"
         },
         {
           id: 2,
-          title: "Category two"
+          title: "Category two",
+          bedrag: "€1.10"
         }
       ]
+    }
+  },
+  methods: {
+    deleteCategory(id) {
+      this.categories = this.categories.filter(category => category.id !== id);
     }
   }
 }
