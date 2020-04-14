@@ -51,8 +51,8 @@ namespace Rest.Controllers {
         [HttpPut]
         public User Put([FromBody] User user) {
             // Do something to update the user at id=user.Id
-            var oldUser = users.FirstOrDefault(u => u.Id == user.Id);
-            users.Remove(oldUser);
+            var userToRemove = users.FirstOrDefault(u => u.Id == user.Id);
+            users.Remove(userToRemove);
             users.Add(user);
             return user;
         }
