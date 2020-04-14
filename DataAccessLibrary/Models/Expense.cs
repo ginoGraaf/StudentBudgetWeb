@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DataAccessLibrary
 {
-    class Expense
+    public class Expense
     {
         [Key]
         public int Id { get; set; }

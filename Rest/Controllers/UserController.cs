@@ -5,56 +5,92 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using DataAccessLibrary;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Rest.Controllers {
     [ApiController]
     [Route("api/User/")]
     public class UserController: ControllerBase {
         
-        private readonly ILogger<UserController> _logger;
+        private readonly ApplicationContext context;
 
-        public UserController(ILogger<UserController> logger)
+        public UserController(ApplicationContext context)
         {
-            _logger = logger;
+            this.context = context;
         }
 
         [HttpGet]
-        public IEnumerable<User> Get() {
+        public async Task<ActionResult<IEnumerable<User>>> GetUsers() {
             // Get all users
-            return users;
+            return await context.Users.ToListAsync();
         }
 
         [HttpGet]
         [Route("{Id}")]
-        public User Get(int Id) {
+        public async Task<ActionResult<User>> GetUser(int Id) {
             // Get a single user by id
-            return users.FirstOrDefault(u => u.Id == Id);
+            var user = await context.Users.FindAsync(Id);
+            if (user == null) {
+                return NotFound();
+            }
+            return user;
         }
 
         [HttpPost]
-        public User Post([FromBody] User user) {
+        public async Task<ActionResult<User>> PostUser(User user) {
             // Create the user
-            user.Id = Index;
-            Index++;
-            users.Add(user);
-            return user;
+            context.Users.Add(user);
+            await context.SaveChangesAsync();
+
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
-        [HttpPut]
-        public User Put([FromBody] User user) {
+        [HttpPut("{Id}")]
+        public async Task<IActionResult> PutUser(int Id, User user) {
             // Do something to update the user at id=user.Id
-            var userToRemove = users.FirstOrDefault(u => u.Id == user.Id);
-            users.Remove(userToRemove);
-            users.Add(user);
+            if (Id != user.Id) {
+                return BadRequest();
+            }
+
+            context.Entry(user).State = EntityState.Modified;
+
+            try
+            {
+                await context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UserExists(Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{Id}")]
+        public async Task<ActionResult<User>> DeleteUser(int Id) {
+            // Delete user
+            var user = await context.Users.FindAsync(Id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            context.Users.Remove(user);
+            await context.SaveChangesAsync();
+
             return user;
         }
 
-        [HttpDelete]
-        [Route("{Id}")]
-        public void Delete(int Id) {
-            // Delete user
-            var userToRemove = users.FirstOrDefault(user => user.Id == Id);
-            users.Remove(userToRemove);
+        private bool UserExists(int Id) {
+            return context.Users.Any(e => e.Id == Id);
         }
     }
 }
