@@ -1,17 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/AddExpense">AddExpense</router-link>
+    </div>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Categories from './components/Categories';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Categories
+  },
+  data() {
+    return{
+      categories: [
+        {
+          id: 1,
+          title: "Category one"
+        },
+        {
+          id: 2,
+          title: "Category two"
+        }
+      ]
+    }
   }
 }
 </script>
@@ -23,6 +40,50 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+
+
+*{
+  box-sizing: border-box; 
+  margin: 0;
+  padding: 0;
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+}
+
 </style>
