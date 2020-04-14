@@ -49,7 +49,7 @@ namespace Rest.Controllers {
         }
 
         [HttpPut]
-        public User Put(User user) {
+        public User Put([FromBody] User user) {
             // Do something to update the user at id=user.Id
             var oldUser = users.FirstOrDefault(u => u.Id == user.Id);
             users.Remove(oldUser);
@@ -61,7 +61,8 @@ namespace Rest.Controllers {
         [Route("{Id}")]
         public void Delete(int Id) {
             // Delete user
-            users.Remove(users.FirstOrDefault(u => u.Id == Id));
+            var userToRemove = users.FirstOrDefault(user => user.Id == Id);
+            users.Remove(userToRemove);
         }
     }
 }
