@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using ORM.Models;
 
 
-namespace ORM.DataAccess
+namespace ORM2
 {
     public class UserContext : DbContext
     {
-        public UserContext(DbContextOptions <UserContext> options) : base(options) { }
+        public UserContext(DbContextOptions<UserContext> options) : base(options) { }
+
         public DbSet<User> Users { get; set; }
-   
     }
 }
-
-

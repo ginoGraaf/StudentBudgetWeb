@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
 
-namespace ORM.Models
+namespace ORM2
 {
     public class User
     {
-        [Key]
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
-        public decimal Balance { get; set; }
-
+        public decimal Balance { get; private set; }
     }
 }
