@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Rest.Controllers {
     [ApiController]
     [Route("api/User/")]
+    [Route("api/Users/")]
     public class UserController: ControllerBase {
         
         private readonly ApplicationContext context;
