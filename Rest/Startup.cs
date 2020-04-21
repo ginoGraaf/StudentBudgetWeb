@@ -27,7 +27,7 @@ namespace Rest
         {
             services.AddDbContext<DataAccessLibrary.ApplicationContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("Default"), b => b.MigrationsAssembly("DataAccessLibrary.Migrations"));
+                options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
 
             services.AddControllersWithViews();
