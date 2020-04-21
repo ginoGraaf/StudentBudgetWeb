@@ -1,19 +1,23 @@
 <template>
   <div id="app">
     <Header />
+      <AddCategory v-on:add-category="addCategory" />
       <Categories v-bind:categories="categories" v-on:del-category="deleteCategory" />
   </div>
 </template>
 
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
 import Header from './components/Header';
 import Categories from './components/Categories';
+import AddCategory from './components/AddCategory';
 
 export default {
   name: 'App',
   components: {
     Header,
-    Categories
+    Categories,
+    AddCategory
   },
   data() {
     return{
@@ -34,6 +38,9 @@ export default {
   methods: {
     deleteCategory(id) {
       this.categories = this.categories.filter(category => category.id !== id);
+    },
+    addCategory(newCategory) {
+      this.category = [...this.categories, newCategory];
     }
   }
 }
