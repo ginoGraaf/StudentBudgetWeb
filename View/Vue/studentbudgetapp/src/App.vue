@@ -5,6 +5,7 @@
       <router-link to="/AddExpense">AddExpense</router-link>
     </div>
     <router-view/>
+    <Categories />
   </div>
 </template>
 
