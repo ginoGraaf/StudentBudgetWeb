@@ -5,7 +5,6 @@
       <router-link to="/AddExpense">AddExpense</router-link>
     </div>
     <router-view/>
-    <Categories />
     <Header />
       <AddCategory v-on:add-category="addCategory" />
       <Categories v-bind:categories="categories" v-on:del-category="deleteCategory" />
