@@ -14,24 +14,22 @@ namespace Rest.Controllers {
     [Route("api/Users/")]
     public class UserController: ControllerBase {
         
-        private readonly ApplicationContext context;
+        private readonly ApplicationContext _context;
 
         public UserController(ApplicationContext context)
         {
-            this.context = context;
+            this._context = context;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers() {
-            // Get all users
-            return await context.Users.ToListAsync();
+            return await _context.Users.ToListAsync();
         }
 
         [HttpGet]
         [Route("{Id}")]
-        public async Task<ActionResult<User>> GetUser(int Id) {
-            // Get a single user by id
-            var user = await context.Users.FindAsync(Id);
+        public async Task<ActionResult<User>> GetUser(int id) {
+            var user = await _context.Users.FindAsync(id);
             if (user == null) {
                 return NotFound();
             }
@@ -40,29 +38,29 @@ namespace Rest.Controllers {
 
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user) {
-            // Create the user
-            context.Users.Add(user);
-            await context.SaveChangesAsync();
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
         [HttpPut("{Id}")]
-        public async Task<IActionResult> PutUser(int Id, User user) {
-            // Do something to update the user at id=user.Id
-            if (Id != user.Id) {
+        public async Task<IActionResult> PutUser(int id, User user)
+        {
+            if (id != user.Id)
+            {
                 return BadRequest();
             }
 
-            context.Entry(user).State = EntityState.Modified;
+            _context.Entry(user).State = EntityState.Modified;
 
             try
             {
-                await context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(Id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -76,22 +74,22 @@ namespace Rest.Controllers {
         }
 
         [HttpDelete("{Id}")]
-        public async Task<ActionResult<User>> DeleteUser(int Id) {
+        public async Task<ActionResult<User>> DeleteUser(int id) {
             // Delete user
-            var user = await context.Users.FindAsync(Id);
+            var user = await _context.Users.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            context.Users.Remove(user);
-            await context.SaveChangesAsync();
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
 
             return user;
         }
 
-        private bool UserExists(int Id) {
-            return context.Users.Any(e => e.Id == Id);
+        private bool UserExists(int id) {
+            return _context.Users.Any(e => e.Id == id);
         }
     }
 }
