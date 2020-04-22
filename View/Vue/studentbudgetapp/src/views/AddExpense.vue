@@ -7,18 +7,26 @@
       <input type="number" step="0.01" placeholder="0,00" v-bind="amount">
     </div>
     <div>
-      <input type="checkbox" v-bind="Monthly"><span>Monthly</span>
+      <StandardExpense />
     </div>
     <div>
       <ChooseCategory />
+    </div>
+    <div>
+      <input type="submit" value="Add expense!">
     </div>
   </div>
 </template>
 
 <script> 
-//import ChooseCategory form '../components/ChooseCategory.vue'
+import ChooseCategory from '../components/ChooseCategory.vue';
+import StandardExpense from '../components/StandardExpense.vue';
 
 export default {
-  name: 'AddExpense'
+  name: 'AddExpense',
+  components: {
+    ChooseCategory,
+    StandardExpense
+  }
 }
 </script>
