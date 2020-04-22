@@ -1,12 +1,15 @@
 <template>
-    <div>
-        <p>Category Item</p>
+    <div class="category-item">
+        {{category.title}},
+        {{category.bedrag}}
+        <button @click="$emit('del-category', category.id)" class="del">X</button>
     </div>
 </template>
 
 <script>
 export default {
-    name: "CategoryItem"
+    name: "CategoryItem",
+    props: ["category"]
 }
 </script>
 
