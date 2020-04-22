@@ -20,7 +20,7 @@ export default {
     AddCategory
   },
   data() {
-    return{
+    return {
       categories: [
         {
           id: 1,
@@ -40,7 +40,7 @@ export default {
       this.categories = this.categories.filter(category => category.id !== id);
     },
     addCategory(newCategory) {
-      this.category = [...this.categories, newCategory];
+      this.categories = [...this.categories, newCategory];
     }
   }
 }
@@ -56,6 +56,15 @@ export default {
 body{
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
+}
+
+.btn{
+  display: inline-block;
+  border: none;
+  background: #555;
+  color: #fff;
+  padding: 7px 20px;
+  cursor: pointer;
 }
 
 </style>

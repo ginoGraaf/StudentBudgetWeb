@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit="addCategory">
+        <form @submit="addCategory()" @submit.prevent>
             <input type="text" v-model="title" name="title" placeholder="Add Category...">
             <input type="submit" value="Submit" class="btn">
         </form>
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import uuid from 'uuid';
+import { uuid } from 'vue-uuid';
 export default {
     name: "AddCategory",
     data() {
@@ -17,12 +17,10 @@ export default {
         }
     },
     methods: {
-    addCategory(e) {
-        e.preventDefault();
+    addCategory() {
         const newCategory = {
             id: uuid.v4(),
-            title: this.title,
-            bedrag : '€1.20'
+            title: this.title
         }
         this.$emit('add-category', newCategory);
 
