@@ -1,0 +1,10 @@
+version: '3'
+services:
+    api:
+        build: .
+        ports:
+            - "5000:80"
+    view:
+        build: View/Vue/studentbudgetapp/
+        ports:
+            - "8080:8080"
