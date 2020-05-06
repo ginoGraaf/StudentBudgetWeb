@@ -2,7 +2,6 @@ import { userService } from '../../services'
 import { router } from '../../router'
 
 export const account = {
-    namespaced: true,
     state,
     actions,
     mutations
