@@ -1,20 +1,22 @@
 <template>
   <div class="AddExpense">
-    <div>
-      <input type="text" placeholder="Name" v-bind="Name">
-    </div>
-    <div>
-      <input type="number" step="0.01" placeholder="0,00" v-bind="amount">
-    </div>
-    <div>
-      <StandardExpense />
-    </div>
-    <div>
-      <ChooseCategory />
-    </div>
-    <div>
-      <input type="submit" value="Add expense!">
-    </div>
+    <form @submit="AddExpense()" @submit.prevent>
+      <div>
+        <input type="text" placeholder="Name" v-bind="Name">
+      </div>
+      <div>
+        <input type="number" step="0.01" placeholder="0,00" v-bind="amount">
+      </div>
+      <div>
+        <StandardExpense />
+      </div>
+      <div>
+        <ChooseCategory />
+      </div>
+      <div>
+        <input type="submit" class='btn' value="Add expense!">
+      </div>
+    </form>
   </div>
 </template>
 
