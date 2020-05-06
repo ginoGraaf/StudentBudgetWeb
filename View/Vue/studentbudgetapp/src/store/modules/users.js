@@ -27,7 +27,7 @@ const actions = {
 
         userService.delete(id)
             .then(
-                user => commit('deleteSuccess', id),
+                //user => commit('deleteSuccess', id),
                 error => commit('deleteFailure', { id, error: error.toString() })
             )
     }
@@ -60,7 +60,7 @@ const mutations = {
         state.all.items = state.items.map(user => {
             if (user.id === id) {
                 // make copy of user without 'deleting:true' property
-                const { deleting, ...userCopy } = user
+                const { ...userCopy } = user
                 // return copy of user with 'deleteError:[error]' property
                 return { ...userCopy, deleteError: error }
             }

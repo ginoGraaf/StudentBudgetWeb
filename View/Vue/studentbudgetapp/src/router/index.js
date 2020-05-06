@@ -14,8 +14,8 @@ Vue.use(VueRouter)
     name: 'Home',
     component: Home
   },
-  { path: '/views/login', component: LoginPage },
-  { path: '/views/register', component: RegisterPage },
+  { path: '/login', component: LoginPage},
+  { path: '/register', RegisterPage },
 
   {
     path: '/AddExpense',
