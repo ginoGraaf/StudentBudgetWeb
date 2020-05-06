@@ -1,14 +1,28 @@
 <template>
     <div>
         <select>
-            <option value="groceries">Groceries</option>
+            <option v-for="Category in Categories" :key="Category"> {{ Category.title }} </option>
         </select>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'ChooseCategory'
+    name: 'ChooseCategory',
+    data() {
+        return {
+            Categories: [
+            {
+                id: 1,
+                title: "Groceries"
+            },
+            {
+                id: 2,
+                title: "Going out"
+            }
+            ]
+        }
+    }
 }
 </script>
 

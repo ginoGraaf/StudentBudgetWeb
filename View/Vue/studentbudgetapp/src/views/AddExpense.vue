@@ -18,13 +18,21 @@
     <div>
       <ChooseCategory />
     </div>
+    <div>
+      <input type="submit" value="Add expense!">
+    </div>
   </div>
 </template>
 
 <script> 
-//import ChooseCategory form '../components/ChooseCategory.vue'
+import ChooseCategory from '../components/ChooseCategory.vue';
+import StandardExpense from '../components/StandardExpense.vue';
 
 export default {
-  name: 'AddExpense'
+  name: 'AddExpense',
+  components: {
+    ChooseCategory,
+    StandardExpense
+  }
 }
 </script>

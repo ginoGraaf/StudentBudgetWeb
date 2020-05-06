@@ -8,28 +8,10 @@
   </div>
 </template>
 
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
-import Categories from './components/Categories';
-
 export default {
-  name: 'App',
-  components: {
-    Categories
-  },
-  data() {
-    return{
-      categories: [
-        {
-          id: 1,
-          title: "Category one"
-        },
-        {
-          id: 2,
-          title: "Category two"
-        }
-      ]
-    }
-  }
+  name: 'App'
 }
 </script>
 
@@ -81,9 +63,18 @@ export default {
   color: #42b983;
 }
 
-body{
+body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
+}
+
+.btn{
+  display: inline-block;
+  border: none;
+  background: #555;
+  color: #fff;
+  padding: 7px 20px;
+  cursor: pointer;
 }
 
 </style>
