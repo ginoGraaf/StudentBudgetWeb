@@ -5,7 +5,6 @@ import LoginPage from '../views/LoginPage.vue'
 import RegisterPage from '../views/RegisterPage.vue'
 import AddExpense from '../views/AddExpense.vue'
 
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -15,20 +14,23 @@ const routes = [
   { path: '/AddExpense', name: 'AddExpense', component: AddExpense }
 ];
 
-const router = new VueRouter({
+export const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, next) => {
+router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
-  const publicPages = ['/login', '/register'];
-  const authRequired = !publicPages.includes(to.path);
-  const loggedIn = localStorage.getItem('user');
+  const publicPages = ['/login', '/register']
+  const authRequired = !publicPages.includes(to.path)
+  console.log(to.path)
+  console.log('lolol')
+  const loggedIn = localStorage.getItem('user')
 
   if (authRequired && !loggedIn) {
-    return next('/login');
+    return next('/login')
+  } else {
+    next()
   }
 
-  next();
-}); 
+}) 
 

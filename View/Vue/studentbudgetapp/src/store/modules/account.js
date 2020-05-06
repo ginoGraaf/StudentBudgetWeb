@@ -1,5 +1,5 @@
 import { userService } from '../../services'
-import { router } from '../../helpers'
+import { router } from '../../router'
 
 export const account = {
     namespaced: true,
