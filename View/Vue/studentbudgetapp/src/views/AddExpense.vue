@@ -7,7 +7,13 @@
       <input type="number" step="0.01" placeholder="0,00" v-bind="amount">
     </div>
     <div>
-      <input type="checkbox" v-bind="Monthly"><span>Monthly</span>
+      <select>
+        <option value="Daily">Once</option>
+        <option value="Daily">Daily</option>
+        <option value="Weekly">Weekly</option>
+        <option value="Monthly">Monthly</option>
+        <option value="Yearly">Yearly</option>
+      </select>
     </div>
     <div>
       <ChooseCategory />
