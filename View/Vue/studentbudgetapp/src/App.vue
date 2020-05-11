@@ -1,16 +1,22 @@
 <template>
   <div id="app">
+    <div>
+    <userInfo></userInfo>
+    </div>
+    <div>
     <PieComponent v-bind="piedata" ></PieComponent>
-   
+   </div>
   </div>
 </template>
 
 <script>
 import PieComponent from './components/PieComponent'
+import userInfo from'./components/UserInformation'
 export default {
   name: 'App',
   components:{
     PieComponent,
+    userInfo,
   },
 
 }
