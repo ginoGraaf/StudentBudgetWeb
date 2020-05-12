@@ -33,6 +33,11 @@ export default {
 }
 
 #app {
+color: #2c3e50;
+text-align:center;
+-moz-osx-font-smoothing: grayscale;
+-webkit-font-smoothing: antialiased;
+font-family: Avenir, Helvetica, Arial, sans-serif;
 position: relative;
 display: flex;
 justify-content: center;

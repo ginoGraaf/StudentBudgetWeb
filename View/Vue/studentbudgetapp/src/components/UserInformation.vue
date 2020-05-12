@@ -21,10 +21,6 @@ export default {
         height: 300px;
         border:  2px solid #fefefe;
 }
-progress:not([value])
-{
-
-}
 progress[value]
 {
     -webkit-appearance: none;
