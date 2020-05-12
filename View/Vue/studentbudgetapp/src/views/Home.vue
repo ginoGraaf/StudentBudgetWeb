@@ -74,6 +74,6 @@ export default {
   border: 1px solid black;
   text-align: center;
   font-size: 30px;
-  height: 300%;
+  height: 700px;
 }
 </style>
