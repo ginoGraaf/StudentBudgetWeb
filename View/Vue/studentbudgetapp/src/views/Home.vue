@@ -5,7 +5,8 @@
     <!-- overzicht component to be added -->
   </div>
   <div>
-    <!-- Gino pie chart component to be added -->
+    <userInfo></userInfo>
+    <PieComponent v-bind="piedata" ></PieComponent>
   </div>
   <div>
     <Header />
@@ -22,17 +23,21 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
 
+import PieComponent from '../components/PieComponent'
 import Header from '../components/Header';
 import Categories from '../components/Categories';
 import AddCategory from '../components/AddCategory';
 import { GridPlugin, Page } from "@syncfusion/ej2-vue-grids";
+
 
 export default {
   name: 'Home',
   components: {
     Header,
     Categories,
-    AddCategory
+    AddCategory,
+    PieComponent,
+    
   },
   data() {
     return {

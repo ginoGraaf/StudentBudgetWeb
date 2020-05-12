@@ -6,23 +6,19 @@
     </div>
     <router-view/>
     <div>
-    <userInfo></userInfo>
+    <!--<userInfo></userInfo>-->
     </div>
-    <div>
-    <PieComponent v-bind="piedata" ></PieComponent>
-   </div>
   </div>
 </template>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
-import PieComponent from './components/PieComponent'
+
 import userInfo from'./components/UserInformation'
 export default {
   name: 'App',
   components:{
-    PieComponent,
-    userInfo,
+    
   },
 
 }
@@ -37,16 +33,11 @@ export default {
 }
 
 #app {
-color: #2c3e50;
-text-align:center;
--moz-osx-font-smoothing: grayscale;
--webkit-font-smoothing: antialiased;
-font-family: Avenir, Helvetica, Arial, sans-serif;
 position: relative;
 display: flex;
 justify-content: center;
 align-items: flex-start;
-min-height: 100vh;
+height: 100vh;
 width: 100%;
 padding: 20px;
 }
@@ -69,7 +60,6 @@ body {
   line-height: 1.4;
   font-size: 1rem;
   font-family:tahoma;
-  background-color: #333;
   color: #fefefe;
 }
 
