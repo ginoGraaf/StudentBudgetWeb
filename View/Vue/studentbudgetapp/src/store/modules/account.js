@@ -4,7 +4,8 @@ import { router } from '../../router'
 export const account = {
     state,
     actions,
-    mutations
+    mutations,
+    namespaced: true
 }
 
 const user = JSON.parse(localStorage.getItem('user'))
