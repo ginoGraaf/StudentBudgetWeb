@@ -2,7 +2,7 @@
   <div class="home">
     <div class="grid-container">
   <div>
-    <!-- overzicht component to be added -->
+    <!-- Gino overzicht component to be added -->
   </div>
   <div>
     <userInfo></userInfo>
