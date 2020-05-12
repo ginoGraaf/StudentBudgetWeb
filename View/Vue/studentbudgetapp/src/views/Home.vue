@@ -2,7 +2,7 @@
   <div class="home">
     <div class="grid-container">
   <div>
-    <!-- Gino overzicht component to be added -->
+    <!-- overzicht component to be added -->
   </div>
   <div>
     <!-- Gino pie chart component to be added -->
