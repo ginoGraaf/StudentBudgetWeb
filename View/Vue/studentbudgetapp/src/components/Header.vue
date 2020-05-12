@@ -1,6 +1,6 @@
 <template>
     <header class="header">
-        <h1>CategoryList</h1>
+        <h1>Categories</h1>
     </header>
 </template>
 
