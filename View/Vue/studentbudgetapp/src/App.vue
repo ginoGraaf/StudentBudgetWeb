@@ -5,29 +5,50 @@
       <router-link to="/AddExpense">AddExpense</router-link>
     </div>
     <router-view/>
+    <div>
+    <userInfo></userInfo>
+    </div>
+    <div>
+    <PieComponent v-bind="piedata" ></PieComponent>
+   </div>
   </div>
 </template>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
+import PieComponent from './components/PieComponent'
+import userInfo from'./components/UserInformation'
 export default {
-  name: 'App'
+  name: 'App',
+  components:{
+    PieComponent,
+    userInfo,
+  },
+
 }
+
 </script>
 
-<style>
+<style lang="css">
 *{
-  box-sizing: border-box; 
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+color: #2c3e50;
+text-align:center;
+-moz-osx-font-smoothing: grayscale;
+-webkit-font-smoothing: antialiased;
+font-family: Avenir, Helvetica, Arial, sans-serif;
+position: relative;
+display: flex;
+justify-content: center;
+align-items: flex-start;
+min-height: 100vh;
+width: 100%;
+padding: 20px;
 }
 
 #nav {
@@ -46,6 +67,10 @@ export default {
 body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
+  font-size: 1rem;
+  font-family:tahoma;
+  background-color: #333;
+  color: #fefefe;
 }
 
 .btn{
