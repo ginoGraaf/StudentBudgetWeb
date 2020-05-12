@@ -18,7 +18,7 @@ export default {
 .collectorbody
 {
         width: 300px;
-        height: 300px;
+        height: 180px;
         border:  2px solid #fefefe;
 }
 progress[value]

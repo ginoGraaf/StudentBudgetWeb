@@ -5,9 +5,6 @@
       <router-link to="/AddExpense">AddExpense</router-link>
     </div>
     <router-view/>
-    <div>
-    <!--<userInfo></userInfo>-->
-    </div>
   </div>
 </template>
 
@@ -38,13 +35,6 @@ text-align:center;
 -moz-osx-font-smoothing: grayscale;
 -webkit-font-smoothing: antialiased;
 font-family: Avenir, Helvetica, Arial, sans-serif;
-position: relative;
-display: flex;
-justify-content: center;
-align-items: flex-start;
-height: 100vh;
-width: 100%;
-padding: 20px;
 }
 
 #nav {

@@ -2,11 +2,12 @@
   <div class="home">
     <div class="grid-container">
   <div>
-    <!-- Gino overzicht component to be added -->
+    <OverViewHeader />
   </div>
   <div>
+    <ExpensesHeader />
     <userInfo></userInfo>
-    <PieComponent v-bind="piedata" ></PieComponent>
+    <PieComponent v-bind="piedata" />
   </div>
   <div>
     <Header />
@@ -23,8 +24,11 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
 
+import userInfo from'../components/UserInformation'
 import PieComponent from '../components/PieComponent'
 import Header from '../components/Header';
+import OverViewHeader from '../components/OverViewHeader';
+import ExpensesHeader from '../components/ExpensesHeader';
 import Categories from '../components/Categories';
 import AddCategory from '../components/AddCategory';
 import { GridPlugin, Page } from "@syncfusion/ej2-vue-grids";
@@ -34,10 +38,12 @@ export default {
   name: 'Home',
   components: {
     Header,
+    OverViewHeader,
+    ExpensesHeader,
     Categories,
     AddCategory,
     PieComponent,
-    
+    userInfo
   },
   data() {
     return {
@@ -79,6 +85,6 @@ export default {
   border: 1px solid black;
   text-align: center;
   font-size: 30px;
-  height: 700px;
+  height: 600px;
 }
 </style>

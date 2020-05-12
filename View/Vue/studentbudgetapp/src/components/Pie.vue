@@ -22,10 +22,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .pie-chart{
     width: 300px;
     height: 300px;
     border-radius: 50%;
     border:  2px solid #fefefe;
+    position: absolute;
 }
 </style>
