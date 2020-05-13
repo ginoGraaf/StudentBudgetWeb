@@ -14,7 +14,7 @@
 
 <script>
 
-import userInfo from'./components/UserInformation'
+//import userInfo from'./components/UserInformation'
 export default {
   name: 'App',
   components:{
