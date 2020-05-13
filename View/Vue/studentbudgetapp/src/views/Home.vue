@@ -1,23 +1,21 @@
 <template>
   <div class="home">
     <div class="grid-container">
-  <div>
-    <OverViewHeader />
-    <!-- Overview component to be added -->
-  </div>
-  <div>
-    <ExpensesHeader />
-    <userInfo></userInfo>
-    <PieComponent v-bind="piedata" />
-  </div>
-  <div>
-    <Header />
-      <AddCategory v-on:add-category="addCategory" />
-      <Categories v-bind:categories="categories" v-on:del-category="deleteCategory" />
-  </div>
-</div>
-    
-    
+      <div>
+        <OverViewHeader />
+        <!-- Overview component to be added -->
+      </div>
+      <div>
+        <ExpensesHeader />
+        <userInfo></userInfo>
+        <PieComponent v-bind="piedata" />
+      </div>
+      <div>
+        <Header />
+          <AddCategory v-on:add-category="addCategory" />
+          <Categories v-bind:categories="categories" v-on:del-category="deleteCategory" />
+      </div>
+    </div>
   </div>
 </template>
 
