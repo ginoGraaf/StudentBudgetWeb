@@ -9,7 +9,7 @@
       <br>
     </div>
 
-</template>
+</template>s
 
 <script>
 export default {
