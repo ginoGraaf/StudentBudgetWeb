@@ -117,10 +117,10 @@ export default {
 }
 
 body {
-  display: -webkit-box;
-  display: -moz-box;
+  display: -webkit-flex;
+  display: -moz-flex;
   display: -ms-flexbox;
-  display: box;
+  display: flex;
   background: #e8ebee;
 }
 </style>

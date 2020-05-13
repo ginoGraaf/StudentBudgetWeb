@@ -7,7 +7,7 @@
       <input type="number" step="0.01" placeholder="0,00" v-bind="amount"> 
     </div>
     <div>
-      <StandardExpense/> 
+      <RegularExpense/> 
     </div>
     <div>
       <ChooseCategory/> 
@@ -20,13 +20,13 @@
 
 <script> 
 import ChooseCategory from '../components/ChooseCategory.vue';
-import StandardExpense from '../components/StandardExpense.vue';
+import RegularExpense from '../components/RegularExpense.vue';
 
 export default {
   name: 'AddExpense',
   components: {
     ChooseCategory,
-    StandardExpense
+    RegularExpense
   }
 }
 </script>
