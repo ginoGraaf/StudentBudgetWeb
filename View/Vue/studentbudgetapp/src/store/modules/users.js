@@ -1,12 +1,5 @@
 import { userService } from '../../services'
 
-export const users = {
-    namespaced: true,
-    state,
-    actions,
-    mutations
-}
-
 const state = {
     all: {}
 }
@@ -68,4 +61,11 @@ const mutations = {
             return user
         })
     }
+}
+
+export const users = {
+    namespaced: true,
+    state,
+    actions,
+    mutations
 }

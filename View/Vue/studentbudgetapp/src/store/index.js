@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import { alert } from './modules/alert'
 import { account } from './modules/account'
 import { users } from './modules/users'
+import { expenses } from './modules/expenses'
 
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     modules: {
-        alert,
         account,
-        users
+        users,
+        expenses
     }
 })

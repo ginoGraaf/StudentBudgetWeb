@@ -8,9 +8,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="Expense in Expenses" :key="Expense.id">
-                    <td>{{ Expense.name }}</td>
-                    <td>{{ Expense.amount }}</td>
+                <tr v-for="expense in allExpenses" :key="expense.id">
+                    <td>{{ expense.name }}</td>
+                    <td>{{ expense.amount }}</td>
                 </tr>
             </tbody>
         </table>
@@ -18,29 +18,17 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
     name: "ExpenseOverview",
-    
-    data(){
-        return {
-           Expenses: [
-                {
-                    id: 1,
-                    name: "Boodschappen",
-                    amount: "18.34"
-                },
-                {
-                    id: 2,
-                    name: "Zorgverzekering",
-                    amount: "99.50"
-                },
-                {
-                    id: 3,
-                    name: "Autoverzekering",
-                    amount: "84.38"
-                }
-            ] 
-        }       
+    computed: {
+        ...mapGetters('expenses', ['allExpenses'])
+    },
+    methods: {
+        ...mapActions('expenses', ['getAll'])
+    },
+    created() {
+        this.getAll()
     }
 }
 </script>
