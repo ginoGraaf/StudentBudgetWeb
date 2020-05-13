@@ -5,7 +5,8 @@ export const account = {
     namespaced: true,
     state,
     actions,
-    mutations
+    mutations,
+    namespaced: true
 }
 
 const user = JSON.parse(localStorage.getItem('user'))

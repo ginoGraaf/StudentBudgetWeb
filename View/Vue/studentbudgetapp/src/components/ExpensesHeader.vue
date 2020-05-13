@@ -1,6 +1,6 @@
 <template>
     <header class="header">
-        <h1>Categories</h1>
+        <h1>Expenses</h1>
     </header>
 </template>
 
