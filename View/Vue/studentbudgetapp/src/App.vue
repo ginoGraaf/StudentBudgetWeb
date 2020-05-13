@@ -5,38 +5,30 @@
       <router-link to="/AddExpense">AddExpense</router-link> | 
       <router-link to="/login">Login</router-link> | 
       <router-link to="/register">Register</router-link>
-      
     </div>
     <router-view/>
   </div>
 </template>
 
 <script>
-
-//import userInfo from'./components/UserInformation'
 export default {
-  name: 'App',
-  components:{
-    
-  },
-
+  name: 'App'
 }
-
 </script>
 
-<style lang="css">
+<style>
 *{
+  box-sizing: border-box; 
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 #app {
-color: #2c3e50;
-text-align:center;
--moz-osx-font-smoothing: grayscale;
--webkit-font-smoothing: antialiased;
-font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
 
 #nav {
@@ -55,9 +47,6 @@ font-family: Avenir, Helvetica, Arial, sans-serif;
 body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
-  font-size: 1rem;
-  font-family:tahoma;
-  color: #fefefe;
 }
 
 .btn{

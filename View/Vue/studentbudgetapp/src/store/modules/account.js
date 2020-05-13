@@ -1,13 +1,6 @@
 import { userService } from '../../services'
 import { router } from '../../router'
 
-export const account = {
-    namespaced: true,
-    state,
-    actions,
-    mutations,
-}
-
 const user = JSON.parse(localStorage.getItem('user'))
 const state = user
     ? { status: { loggedIn: true }, user }
@@ -80,4 +73,11 @@ const mutations = {
     registerFailure(state) {
         state.status = {}
     }
+}
+
+export const account = {
+    namespaced: true,
+    state,
+    actions,
+    mutations,
 }
