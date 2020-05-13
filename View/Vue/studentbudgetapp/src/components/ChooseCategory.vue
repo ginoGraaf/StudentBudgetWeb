@@ -1,7 +1,7 @@
 <template>
     <div>
         <select>
-            <option v-for="Category in Categories" :key="Category"> {{ Category.title }} </option>
+            <option v-for="Category in Categories" :key="Category" v-on:selected="$emit('çategory', Category.id)"> {{ Category.title }} </option>
         </select>
     </div>
 </template>
