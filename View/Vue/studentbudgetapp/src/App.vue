@@ -10,24 +10,31 @@
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
+
+import userInfo from'./components/UserInformation'
 export default {
-  name: 'App'
+  name: 'App',
+  components:{
+    
+  },
+
 }
+
 </script>
 
-<style>
+<style lang="css">
 *{
-  box-sizing: border-box; 
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+color: #2c3e50;
+text-align:center;
+-moz-osx-font-smoothing: grayscale;
+-webkit-font-smoothing: antialiased;
+font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
 #nav {
@@ -46,6 +53,9 @@ export default {
 body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
+  font-size: 1rem;
+  font-family:tahoma;
+  color: #fefefe;
 }
 
 .btn{
