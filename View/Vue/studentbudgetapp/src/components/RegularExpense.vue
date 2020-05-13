@@ -1,5 +1,6 @@
 <template>
     <div>
+
       <input type="radio" class="radio" v-model="OneTime"  value="null" name="regularExpense" v-on:change="oneTimeExpense"><span>  One time  </span>
       <input type="radio" class="radio" v-model="Weekly" value="weekly" name="regularExpense" v-on:change="weeklyExpense"><span>  Weekly  </span>
       <input type="radio" class="radio" v-model="Monthly" value="monthly" name="regularExpense" v-on:change="monthlyExpense"><span>  Monthly  </span>
@@ -7,6 +8,7 @@
       <br>
       <br>
     </div>
+
 </template>
 
 <script>
