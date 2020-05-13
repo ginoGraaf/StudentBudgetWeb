@@ -1,15 +1,15 @@
 <template>
     <div>
 
-      <input type="radio" class="radio" v-model="OneTime"  value="null" name="regularExpense" v-on:change="oneTimeExpense"><span>  One time  </span>
-      <input type="radio" class="radio" v-model="Weekly" value="weekly" name="regularExpense" v-on:change="weeklyExpense"><span>  Weekly  </span>
-      <input type="radio" class="radio" v-model="Monthly" value="monthly" name="regularExpense" v-on:change="monthlyExpense"><span>  Monthly  </span>
-      <input type="radio" class="radio" v-model="Annual" value="annual" name="regularExpense" v-on:change="annualExpense"><span>  Annual  </span>
+      <input type="radio" class="radio" v-model="regulation" v-bind:value="null" name="regularExpense" v-on:change="oneTimeExpense"><span>  One time  </span>
+      <input type="radio" class="radio" v-model="regulation" v-bind:value="weekly" name="regularExpense" v-on:change="weeklyExpense"><span>  Weekly  </span>
+      <input type="radio" class="radio" v-model="regulation" v-bind:value="monthly" name="regularExpense" v-on:change="monthlyExpense"><span>  Monthly  </span>
+      <input type="radio" class="radio" v-model="regulation" v-bind:value="annual" name="regularExpense" v-on:change="annualExpense"><span>  Annual  </span>
       <br>
       <br>
     </div>
 
-</template>s
+</template>
 
 <script>
 export default {
@@ -18,8 +18,9 @@ export default {
     return{
       OneTime: null,
       Weekly: 'weekly',
-      Monthly: 2,
-      Annual: String('annual')
+      Monthly: 'monthly',
+      Annual: 'annual',
+      regulation: null
     }
   },
   methods: {
