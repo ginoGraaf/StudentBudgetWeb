@@ -2,10 +2,10 @@ import { userService } from '../../services'
 import { router } from '../../router'
 
 export const account = {
+    namespaced: true,
     state,
     actions,
     mutations,
-    namespaced: true
 }
 
 const user = JSON.parse(localStorage.getItem('user'))
