@@ -5,7 +5,7 @@
         <input type="text" placeholder="Name" v-model="name">
       </div>
       <div>
-        <input type="number" step="0.01" placeholder="0,00" v-model="amount">
+        <input type="number" step="0.01" placeholder="0.00" v-model="amount">
       </div>
       <div>
         <RegularExpense v-model="regularExpense" v-on:regular-expense="setRegular"/>
@@ -35,7 +35,7 @@ export default {
   data(){
     return{
       name: '',
-      amount: '0,00',
+      amount: '0.00',
       regularExpense: null,
       category: null
     }
