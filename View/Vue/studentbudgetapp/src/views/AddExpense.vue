@@ -11,7 +11,7 @@
         <RegularExpense v-model="regularExpense" v-on:regular-expense="setRegular"/>
       </div>
       <div>
-        <ChooseCategory v-model="category"/>
+        <ChooseCategory v-model="category" v-on:chosen-category="setCategory"/>
       </div>
       <div>
         <input type="submit" value="Add expense!" class="btn">
@@ -46,6 +46,11 @@ export default {
       
       this.regularExpense = regulation;
     },
+    setCategory(chosenCategory) {
+      console.log('setCategory', chosenCategory);
+
+      this.category = chosenCategory;
+    },
     addExpense() {
         console.log('addExpense' + this.regularExpense);
 
@@ -57,6 +62,7 @@ export default {
             category: this.category
         }
         this.$emit('add-expense', newExpense);
+        this.$router.push('/');
     }
 
   }

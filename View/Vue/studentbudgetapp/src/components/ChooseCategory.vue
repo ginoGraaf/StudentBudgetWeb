@@ -1,6 +1,6 @@
 <template>
     <div>
-        <select v-model="selected" v-on:change="emitCategorie">
+        <select v-model="selected" v-on:change="emitCategory">
             <option v-for="Category in Categories" :key="Category"> {{ Category.title }} </option>
         </select>
     </div>
@@ -30,7 +30,8 @@ export default {
     },
     methods: {
         emitCategory() {
-            this.$emit('chosenCategory', this.selected)
+            console.log('emitCategory', this.selected)
+            this.$emit('chosen-category', this.selected)
         }
     }
 }
