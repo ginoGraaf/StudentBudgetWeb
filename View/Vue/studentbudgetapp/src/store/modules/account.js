@@ -6,7 +6,6 @@ export const account = {
     state,
     actions,
     mutations,
-    namespaced: true
 }
 
 const user = JSON.parse(localStorage.getItem('user'))
