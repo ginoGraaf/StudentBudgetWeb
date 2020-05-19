@@ -5,6 +5,7 @@
     </div>
     <div>
     <PieComponent v-bind="piedata" ></PieComponent>
+    <GoalsComponent></GoalsComponent>
    </div>
   </div>
 </template>
@@ -12,11 +13,13 @@
 <script>
 import PieComponent from './components/PieComponent'
 import userInfo from'./components/UserInformation'
+import GoalsComponent from './components/GoalsComponent'
 export default {
   name: 'App',
   components:{
     PieComponent,
     userInfo,
+    GoalsComponent,
   },
 
 }
