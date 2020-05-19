@@ -4,6 +4,7 @@
       <div>
         <OverViewHeader />
         <!-- Overview component to be added -->
+        <ExpenseOverview/>
       </div>
       <div>
         <ExpensesHeader />
@@ -28,6 +29,7 @@ import PieComponent from '../components/PieComponent'
 import Header from '../components/Header';
 import OverViewHeader from '../components/OverViewHeader';
 import ExpensesHeader from '../components/ExpensesHeader';
+import ExpenseOverview from '../components/ExpenseOverview';
 import Categories from '../components/Categories';
 import AddCategory from '../components/AddCategory';
 
@@ -37,6 +39,7 @@ export default {
   components: {
     Header,
     OverViewHeader,
+    ExpenseOverview,
     ExpensesHeader,
     Categories,
     AddCategory,
