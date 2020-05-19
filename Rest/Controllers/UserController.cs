@@ -7,11 +7,14 @@ using Microsoft.Extensions.Logging;
 using DataAccessLibrary;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.X509Certificates;
+using Newtonsoft.Json;
 
 namespace Rest.Controllers {
     [ApiController]
     [Route("api/User/")]
     [Route("api/Users/")]
+
     public class UserController: ControllerBase {
         
         private readonly ApplicationContext _context;
@@ -19,6 +22,27 @@ namespace Rest.Controllers {
         public UserController(ApplicationContext context)
         {
             this._context = context;
+        }
+
+        [HttpPost]
+        [Route("authenticate")]
+        public async Task<ActionResult<User>> Authenticate([FromBody] string json)
+        {
+            dynamic userinformation = JsonConvert.DeserializeObject(json);
+
+            string username = userinformation.username;
+            string password = userinformation.password;
+
+            var user = await FindByEmail(username);  
+
+            if(user.Password == password)
+            {
+                return user;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         [HttpGet]
@@ -90,6 +114,12 @@ namespace Rest.Controllers {
 
         private bool UserExists(int id) {
             return _context.Users.Any(e => e.Id == id);
+        }
+
+        private async Task<User> FindByEmail(string email)
+        {
+            var user = await _context.Users.SingleOrDefaultAsync(u => u.Email == email );
+            return user;
         }
     }
 }

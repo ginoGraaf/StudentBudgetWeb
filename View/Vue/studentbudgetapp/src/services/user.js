@@ -1,6 +1,6 @@
 import { authHeader } from '../helpers'
 
-const apiUrl = 'https://localhost:5000'
+const apiUrl = 'api/'
 
 export const userService = {
     login,
@@ -19,15 +19,14 @@ function login(username, password) {
         body: JSON.stringify({ username, password })
     }
 
-    return fetch(`${apiUrl}/users/authenticate`, requestOptions)
+    return fetch(`${apiUrl}users/authenticate`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // login successful if there's a jwt token in the response
-            if (user.token) {
+           
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user))
-            }
-
+            
             return user
         })
 }
