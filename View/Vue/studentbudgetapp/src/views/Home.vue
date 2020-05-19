@@ -3,7 +3,6 @@
     <div class="grid-container">
       <div>
         <OverViewHeader />
-        <!-- Overview component to be added -->
         <ExpenseOverview/>
       </div>
       <div>
