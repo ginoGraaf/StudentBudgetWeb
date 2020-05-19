@@ -21,6 +21,7 @@ export default {
         SendData()
         {
             console.log(this.EarningGoal+"  "+this.Money);
+            console.log("test");
         }
     }
 }
