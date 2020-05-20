@@ -49,8 +49,17 @@ export default {
     userInfo
   },
   mounted: function () {
-    axios.get('../api/Categories/')
-      .then(response => this.categories = response.data);
+
+    axios.get('https://localhost:44342/api/Categories')
+      .then(response => console.log(response))
+      .catch(error => {
+        if (!error.response) {
+            // network error
+            this.errorStatus = 'Error: Network Error';
+        } else {
+            this.errorStatus = error.response.data.message;
+        }
+      })
   },
   data() {
     return {
@@ -65,7 +74,7 @@ export default {
       this.categories = [...this.categories, newCategory];
     },
     createCategory(newCategory) {
-      const url = '../api/Categories/${category.id}';
+      const url = 'https://localhost:44342/api/Categories/${category.id}';
       return axios.put(url, newCategory);
     }
   }
