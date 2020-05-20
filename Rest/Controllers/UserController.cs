@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography.X509Certificates;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Rest.Controllers {
     [ApiController]
@@ -26,16 +27,11 @@ namespace Rest.Controllers {
 
         [HttpPost]
         [Route("authenticate")]
-        public async Task<ActionResult<User>> Authenticate([FromBody] string json)
+        public async Task<ActionResult<User>> Authenticate(User userInfo)
         {
-            dynamic userinformation = JsonConvert.DeserializeObject(json);
+            var user = await FindByEmail(userInfo.Email);  
 
-            string username = userinformation.username;
-            string password = userinformation.password;
-
-            var user = await FindByEmail(username);  
-
-            if(user.Password == password)
+            if(user.Password == userInfo.Password)
             {
                 return user;
             }

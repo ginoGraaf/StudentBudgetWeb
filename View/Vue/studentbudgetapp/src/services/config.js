@@ -1,5 +1,6 @@
-const apiUrl = 'https://localhost:5001/api'
+const apiUrl = 'http://localhost:5000/api'
+const headers = {'Content-Type': 'application/json'}
 
 export const config = {
-    apiUrl
+    apiUrl, headers
 }

@@ -12,7 +12,8 @@ export const userService = {
 }
 
 async function login(username, password) {
-    return await axios.post(`${config.apiUrl}/users/authenticate`, JSON.stringify({ username, password }))
+    const data = JSON.stringify({Email: username, Password: password})
+    return await axios.post(`${config.apiUrl}/users/authenticate`, data, { headers: config.headers })
         .then(handleResponse)
         .then(user => {
             localStorage.setItem('user', JSON.stringify(user))
@@ -26,20 +27,21 @@ function logout() {
 }
 
 async function register(user) {
-    return await axios.post(`${config.apiUrl}/users/register`, JSON.stringify(user)).then(handleResponse)
+    return await axios.post(`${config.apiUrl}/users/register`, JSON.stringify(user), {headers: config.headers})
+        .then(handleResponse)
 }
 
 async function getAll() {
-    return await axios.get(`${config.apiUrl}/users`).then(handleResponse)
+    return await axios.get(`${config.apiUrl}/users`, {headers: config.headers}).then(handleResponse)
 }
 
 
 async function getById(id) {
-    return await axios.get(`${config.apiUrl}/users/${id}`).then(handleResponse)
+    return await axios.get(`${config.apiUrl}/users/${id}`, {headers: config.headers}).then(handleResponse)
 }
 
 async function update(user) {
-    return await axios.put(`${config.apiUrl}/users/${user.id}`, JSON.stringify(user)).then(handleResponse)
+    return await axios.put(`${config.apiUrl}/users/${user.id}`, JSON.stringify(user), {headers: config.headers}).then(handleResponse)
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
