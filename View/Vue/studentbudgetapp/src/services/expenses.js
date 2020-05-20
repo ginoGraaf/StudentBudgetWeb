@@ -1,4 +1,5 @@
-//const apiUrl = 'http://localhost:5000'
+import axios from "axios"
+import { config } from './config'
 
 export const expenseService = {
     getAll,
@@ -7,26 +8,27 @@ export const expenseService = {
     deleteById
 }
 
-function getAll() {
-    return {
-           expenses: [
-                {
-                    id: 1,
-                    name: "Boodschappen",
-                    amount: "18.34"
-                },
-                {
-                    id: 2,
-                    name: "Zorgverzekering",
-                    amount: "99.50"
-                },
-                {
-                    id: 3,
-                    name: "Autoverzekering",
-                    amount: "84.38"
-                }
-            ] 
-    }
+async function getAll() {
+    return await axios.get(`${config.apiUrl}/expenses/`, {headers: config.headers})
+    // return {
+    //        expenses: [
+    //             {
+    //                 id: 1,
+    //                 name: "Boodschappen",
+    //                 amount: "18.34"
+    //             },
+    //             {
+    //                 id: 2,
+    //                 name: "Zorgverzekering",
+    //                 amount: "99.50"
+    //             },
+    //             {
+    //                 id: 3,
+    //                 name: "Autoverzekering",
+    //                 amount: "84.38"
+    //             }
+    //         ] 
+    // }
 }
 
 function getById() {
