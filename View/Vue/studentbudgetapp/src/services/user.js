@@ -1,6 +1,5 @@
-import { authHeader } from '../helpers'
-
-const apiUrl = 'api/'
+import axios from 'axios'
+import { config } from './config'
 
 export const userService = {
     login,
@@ -12,8 +11,8 @@ export const userService = {
     delete: _delete
 }
 
-function login(username, password) {
-    return await axios.post(`${apiUrl}users/authenticate`, JSON.stringify({ username, password}))
+async function login(username, password) {
+    return await axios.post(`${config.apiUrl}/users/authenticate`, JSON.stringify({ username, password }))
         .then(handleResponse)
         .then(user => {
             localStorage.setItem('user', JSON.stringify(user))
@@ -26,26 +25,26 @@ function logout() {
     localStorage.removeItem('user')
 }
 
-function register(user) {
-    return await axios.post(`${apiUrl}/users/register`, JSON.stringify(user)).then(handleResponse)
+async function register(user) {
+    return await axios.post(`${config.apiUrl}/users/register`, JSON.stringify(user)).then(handleResponse)
 }
 
-function getAll() {
-    return await axios.get(`${apiUrl}/users`).then(handleResponse)
+async function getAll() {
+    return await axios.get(`${config.apiUrl}/users`).then(handleResponse)
 }
 
 
-function getById(id) {
-    return await axios.get(`${apiUrl}/users/${id}`).then(handleResponse)
+async function getById(id) {
+    return await axios.get(`${config.apiUrl}/users/${id}`).then(handleResponse)
 }
 
-function update(user) {
-    return await axios.put(`${apiUrl}/users/${user.id}`, JSON.stringify(user)).then(handleResponse)
+async function update(user) {
+    return await axios.put(`${config.apiUrl}/users/${user.id}`, JSON.stringify(user)).then(handleResponse)
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
-    return await axios.delete(`${apiUrl}/users/${id}`).then(handleResponse)
+async function _delete(id) {
+    return await axios.delete(`${config.apiUrl}/users/${id}`).then(handleResponse)
 }
 
 function handleResponse(response) {
