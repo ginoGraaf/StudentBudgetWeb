@@ -8,8 +8,8 @@ namespace DataAccessLibrary.Models
     public class Category
     {
         public int Id { get; set; }
-        public string Title { get; set; }
-        public double Bedrag { get; set; }
+        public string Name { get; set; }
+        public double Amount { get; set; }
 
     }
 }

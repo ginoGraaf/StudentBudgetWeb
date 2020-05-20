@@ -12,7 +12,7 @@
       </div>
       <div>
         <Header />
-          <AddCategory v-on:add-category="addCategory" />
+          <AddCategory v-on:add-category="createCategory" />
           <Categories v-bind:categories="categories" v-on:del-category="deleteCategory" />
       </div>
     </div>
@@ -31,6 +31,9 @@ import ExpensesHeader from '../components/ExpensesHeader';
 import ExpenseOverview from '../components/ExpenseOverview';
 import Categories from '../components/Categories';
 import AddCategory from '../components/AddCategory';
+import Vue from 'vue'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 
 export default {
@@ -45,21 +48,13 @@ export default {
     PieComponent,
     userInfo
   },
+  mounted: function () {
+    axios.get('../api/Categories/')
+      .then(response => this.categories = response.data);
+  },
   data() {
     return {
-      categories: [
-        {
-          id: 1,
-          title: "Category one",
-          bedrag: "€1.10"
-        },
-        {
-          id: 2,
-          title: "Category two",
-          bedrag: "€1.10"
-        }
-      ]
-      
+      categories: null,
     }
   },
   methods: {
@@ -68,6 +63,10 @@ export default {
     },
     addCategory(newCategory) {
       this.categories = [...this.categories, newCategory];
+    },
+    createCategory(newCategory) {
+      const url = '../api/Categories/${category.id}';
+      return axios.put(url, newCategory);
     }
   }
 }
