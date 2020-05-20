@@ -13,20 +13,10 @@ export const userService = {
 }
 
 function login(username, password) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-    }
-
-    return fetch(`${apiUrl}users/authenticate`, requestOptions)
+    return await axios.post(`${apiUrl}users/authenticate`, JSON.stringify({ username, password}))
         .then(handleResponse)
         .then(user => {
-            // login successful if there's a jwt token in the response
-           
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('user', JSON.stringify(user))
-            
+            localStorage.setItem('user', JSON.stringify(user))
             return user
         })
 }
@@ -37,52 +27,25 @@ function logout() {
 }
 
 function register(user) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-    }
-
-    return fetch(`${apiUrl}/users/register`, requestOptions).then(handleResponse)
+    return await axios.post(`${apiUrl}/users/register`, JSON.stringify(user)).then(handleResponse)
 }
 
 function getAll() {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    }
-
-    return fetch(`${apiUrl}/users`, requestOptions).then(handleResponse)
+    return await axios.get(`${apiUrl}/users`).then(handleResponse)
 }
 
 
 function getById(id) {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    }
-
-    return fetch(`${apiUrl}/users/${id}`, requestOptions).then(handleResponse)
+    return await axios.get(`${apiUrl}/users/${id}`).then(handleResponse)
 }
 
 function update(user) {
-    const requestOptions = {
-        method: 'PUT',
-        headers: { ...authHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-    }
-
-    return fetch(`${apiUrl}/users/${user.id}`, requestOptions).then(handleResponse)
+    return await axios.put(`${apiUrl}/users/${user.id}`, JSON.stringify(user)).then(handleResponse)
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
-    const requestOptions = {
-        method: 'DELETE',
-        headers: authHeader()
-    }
-
-    return fetch(`${apiUrl}/users/${id}`, requestOptions).then(handleResponse)
+    return await axios.delete(`${apiUrl}/users/${id}`).then(handleResponse)
 }
 
 function handleResponse(response) {
