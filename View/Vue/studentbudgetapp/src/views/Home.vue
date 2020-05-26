@@ -32,7 +32,6 @@ import ExpensesHeader from '../components/ExpensesHeader';
 import ExpenseOverview from '../components/ExpenseOverview';
 import Categories from '../components/Categories';
 import AddCategory from '../components/AddCategory';
-import { GridPlugin, Page } from "@syncfusion/ej2-vue-grids";
 
 
 export default {
