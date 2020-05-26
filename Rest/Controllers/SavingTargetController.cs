@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DataAccessLibrary;
+using Microsoft.EntityFrameworkCore;
 
 namespace Rest.Controllers
 {
@@ -20,21 +21,21 @@ namespace Rest.Controllers
         }
         // GET: api/SavingTarget/5
         [HttpGet("{id}", Name = "Get")]
-        public SavingTargetModel Get(int id)
+        public SavingGoalsModel Get(int id)
         {
-            return new SavingTargetModel();
+            return new SavingGoalsModel();
         }
 
         // POST: api/SavingTarget
         [HttpPost]
-        public void Post([FromBody] SavingTargetModel savingTarget)
+        public void Post([FromBody] SavingGoalsModel savingTarget)
         {
             
         }
 
         // PUT: api/SavingTarget/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] SavingTargetModel savingTarget)
+        public void Put(int id, [FromBody] SavingGoalsModel savingTarget)
         {
         }
 
