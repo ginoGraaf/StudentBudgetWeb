@@ -79,7 +79,7 @@ export default {
       this.categories = [...this.categories, newCategory];
     },
     createCategory(newCategory) {
-      const url = 'https://localhost:5001/api/Categories/';
+      const url = 'localhost:500/api/Categories/';
       return axios.post(url, newCategory, {headers:{'Content-Type': 'application/json'}});
     }
   }
