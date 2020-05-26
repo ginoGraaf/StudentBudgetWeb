@@ -80,10 +80,10 @@ export default {
     },
     createCategory(newCategory) {
   
-console.log(newCategory);
-      let TestForURL={Id:0,Title:newCategory.title,Bedrag:500};
-      console.log(TestForURL );
-      const url = '/localhost/api/Category';
+      console.log(newCategory);
+        let TestForURL={Id:0,Title:newCategory.title,Bedrag:500};
+        console.log(TestForURL );
+        const url = '/localhost/api/Category';
       return axios.post(url, TestForURL, {headers:{'Content-Type': 'application/json'}});
     }
   }
