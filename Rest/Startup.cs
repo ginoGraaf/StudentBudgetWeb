@@ -32,9 +32,9 @@ namespace Rest
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:8080",
-                            "http://localhost:44342");
-                    });
+                        builder.WithOrigins(
+                            "http://localhost:8080/").AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            });
             });
 
             services.AddDbContext<DataAccessLibrary.ApplicationContext>(options =>
