@@ -55,7 +55,7 @@ export default {
   },
   mounted: function () {
 
-    axios.get('https://localhost:5001/api/Category')
+    axios.get('/localhost/api/Category')
       .then(response => console.log(response))
       .catch(error => {
         if (!error.response) {
@@ -79,8 +79,12 @@ export default {
       this.categories = [...this.categories, newCategory];
     },
     createCategory(newCategory) {
-      const url = 'localhost:500/api/Categories/';
-      return axios.post(url, newCategory, {headers:{'Content-Type': 'application/json'}});
+  
+console.log(newCategory);
+      let TestForURL={Id:0,Title:newCategory.title,Bedrag:500};
+      console.log(TestForURL );
+      const url = '/localhost/api/Category';
+      return axios.post(url, TestForURL, {headers:{'Content-Type': 'application/json'}});
     }
   }
 }
