@@ -1,10 +1,10 @@
 <template>
     <div>
 
-      <input type="radio" class="radio" v-model="regulation" v-bind:value="null" name="regularExpense" v-on:change="oneTimeExpense"><span>  One time  </span>
-      <input type="radio" class="radio" v-model="regulation" v-bind:value="weekly" name="regularExpense" v-on:change="weeklyExpense"><span>  Weekly  </span>
-      <input type="radio" class="radio" v-model="regulation" v-bind:value="monthly" name="regularExpense" v-on:change="monthlyExpense"><span>  Monthly  </span>
-      <input type="radio" class="radio" v-model="regulation" v-bind:value="annual" name="regularExpense" v-on:change="annualExpense"><span>  Annual  </span>
+      <input type="radio" class="radio" v-model="regulation" value="null" name="regularExpense" v-on:change="setRegulation"><span>  One time  </span>
+      <input type="radio" class="radio" v-model="regulation" value="weekly" name="regularExpense" v-on:change="setRegulation"><span>  Weekly  </span>
+      <input type="radio" class="radio" v-model="regulation" value="monthly" name="regularExpense" v-on:change="setRegulation"><span>  Monthly  </span>
+      <input type="radio" class="radio" v-model="regulation" value="annual" name="regularExpense" v-on:change="setRegulation"><span>  Annual  </span>
       <br>
       <br>
     </div>
@@ -24,17 +24,8 @@ export default {
     }
   },
   methods: {
-    oneTimeExpense(){
-      this.$emit('regular-expense', null)
-    },
-    weeklyExpense(){
-      this.$emit('regular-expense', this.Weekly)
-    },
-    monthlyExpense(){
-      this.$emit('regular-expense', this.Monthly)
-    },
-    annualExpense(){
-      this.$emit('regular-expense', this.Annual)
+    setRegulation(){
+      this.$emit('regular-expense', this.regulation)
     }
   }
 }
