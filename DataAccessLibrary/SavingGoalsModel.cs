@@ -11,7 +11,7 @@ namespace DataAccessLibrary
     {
         [Key]
         public int ID { get; set; }
-        [ForeignKey("UserID")]
+
         public int UserID { get; set; }
         public string GoalName { get; set; }
         public int savingAmount { get; set; }

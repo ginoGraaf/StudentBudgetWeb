@@ -7,6 +7,18 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200414130419_InitalDbMigraion.cs" />
     <Compile Remove="Migrations\20200414130419_InitalDbMigraion.Designer.cs" />
+    <Compile Remove="Migrations\20200526085024_SavingGoalsMode.cs" />
+    <Compile Remove="Migrations\20200526085024_SavingGoalsMode.Designer.cs" />
+    <Compile Remove="Migrations\20200526115202_SavingGoalsModel.cs" />
+    <Compile Remove="Migrations\20200526115202_SavingGoalsModel.Designer.cs" />
+    <Compile Remove="Migrations\20200526115555_SavingGoalsModel.cs" />
+    <Compile Remove="Migrations\20200526115555_SavingGoalsModel.Designer.cs" />
+    <Compile Remove="Migrations\20200526120159_Categories.cs" />
+    <Compile Remove="Migrations\20200526120159_Categories.Designer.cs" />
+    <Compile Remove="Migrations\20200526120835_Categories.cs" />
+    <Compile Remove="Migrations\20200526120835_Categories.Designer.cs" />
+    <Compile Remove="Migrations\20200526121754_Categories.cs" />
+    <Compile Remove="Migrations\20200526121754_Categories.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

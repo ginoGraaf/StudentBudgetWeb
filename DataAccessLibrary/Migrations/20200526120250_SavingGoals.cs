@@ -2,29 +2,30 @@
 
 namespace DataAccessLibrary.Migrations
 {
-    public partial class SavingGoalsMode : Migration
+    public partial class SavingGoals : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Categories",
+                name: "SavingGoals",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(nullable: true),
-                    Bedrag = table.Column<double>(nullable: false)
+                    UserID = table.Column<int>(nullable: false),
+                    GoalName = table.Column<string>(nullable: true),
+                    savingAmount = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
+                    table.PrimaryKey("PK_SavingGoals", x => x.ID);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "SavingGoals");
         }
     }
 }
