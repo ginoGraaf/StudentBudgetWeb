@@ -50,7 +50,7 @@ export default {
   },
   mounted: function () {
 
-    axios.get('https://localhost:44342/api/Categories')
+    axios.get('https://localhost:44342/api/Category')
       .then(response => console.log(response))
       .catch(error => {
         if (!error.response) {
