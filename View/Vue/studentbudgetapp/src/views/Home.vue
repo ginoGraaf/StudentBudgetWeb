@@ -102,6 +102,6 @@ export default {
   text-align: center;
   font-size: 30px;
   padding: 0px;
-  height: 800px;
+  height: 600px;
 }
 </style>
