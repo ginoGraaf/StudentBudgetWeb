@@ -11,25 +11,14 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: 'ChooseCategory',
     data() {
         return {
             selected: 'No category',
-            Categories: [
-            {
-                id: 0,
-                title: "No category"
-            },
-            {
-                id: 1,
-                title: "Groceries"
-            },
-            {
-                id: 2,
-                title: "Going out"
-            }
-            ]
+            Categories: []
         }
     },
     methods: {
@@ -37,6 +26,9 @@ export default {
             console.log('emitCategory', this.selected)
             this.$emit('chosen-category', this.selected)
         }
+    },
+    created() {
+        axios.get('localhost:8080/api/Category/').then(res => this.Categories = res.data).catch(err => Console.log(err));
     }
 }
 </script>
