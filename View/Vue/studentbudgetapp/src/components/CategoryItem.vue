@@ -1,7 +1,7 @@
 <template>
     <div class="category-item">
         {{category.title}},
-        {{category.bedrag}}
+        {{category.amount}}
         <button @click="$emit('del-category', category.id)" class="del">X</button>
     </div>
 </template>
@@ -18,10 +18,6 @@ export default {
     background: #f4f4f4;
     padding: 10px;
     border-bottom: 1px #ccc dotted;
-}
-
-.is-complete {
-    text-decoration: line-through;
 }
 
 .del {
