@@ -56,7 +56,7 @@ export default {
   mounted: function () {
 
     axios.get('/localhost/api/Category')
-      .then(response => console.log(response))
+      // .then(response => console.log(response))
       .catch(error => {
         if (!error.response) {
             // network error
@@ -80,9 +80,9 @@ export default {
     },
     createCategory(newCategory) {
   
-      console.log(newCategory);
+      // console.log(newCategory);
         let TestForURL={Id:0,Title:newCategory.title,Bedrag:500};
-        console.log(TestForURL );
+        // console.log(TestForURL );
         const url = '/localhost/api/Category';
       return axios.post(url, TestForURL, {headers:{'Content-Type': 'application/json'}});
     }

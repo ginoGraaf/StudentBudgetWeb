@@ -9,7 +9,7 @@ export const expenseService = {
 }
 
 async function getAll() {
-    return await axios.get(`${config.apiUrl}/expenses/`, {headers: config.headers})
+    return await axios.get(`${config.apiUrl}/Expense/`, {headers: config.headers})
     // return {
     //        expenses: [
     //             {
