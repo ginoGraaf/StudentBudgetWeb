@@ -6,13 +6,13 @@ const state = () => ({
 
 const actions = {
     getAll({commit}) {
-        commit('getAllCommit', expenseService.getAll().expenses)
+        commit('getAllCommit', expenseService.getAll())
     }
 }
 
 const mutations = {
     getAllCommit(state, expenses) {
-        state.expenses = expenses
+        expenses.then(resp => {state.expenses = resp})
     }
 }
 

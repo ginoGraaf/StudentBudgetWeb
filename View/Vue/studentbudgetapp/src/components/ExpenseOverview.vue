@@ -10,7 +10,7 @@
             <tbody>
                 <tr v-for="expense in allExpenses" :key="expense.id">
                     <td>{{ expense.name }}</td>
-                    <td>{{ expense.amount }}</td>
+                    <td>&euro;{{ expense.amount }}</td>
                 </tr>
             </tbody>
         </table>
