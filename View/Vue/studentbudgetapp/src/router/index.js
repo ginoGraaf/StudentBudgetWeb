@@ -10,7 +10,7 @@ Vue.use(VueRouter)
 const routes = [
   { path: '/', name: 'Home', component: Home },
   { path: '/login', name: 'Login', component: LoginPage},
-  { path: '/register', name: 'Register', RegisterPage },
+  { path: '/register', name: 'Register',component: RegisterPage },
   { path: '/AddExpense', name: 'AddExpense', component: AddExpense },
 ];
 

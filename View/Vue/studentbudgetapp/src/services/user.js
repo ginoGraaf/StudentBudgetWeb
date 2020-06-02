@@ -1,6 +1,5 @@
-import { authHeader } from '../helpers'
-
-const apiUrl = 'https://localhost:5000'
+import axios from 'axios'
+import { config } from './config'
 
 export const userService = {
     login,
@@ -12,22 +11,12 @@ export const userService = {
     delete: _delete
 }
 
-function login(username, password) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-    }
-
-    return fetch(`${apiUrl}/users/authenticate`, requestOptions)
+async function login(username, password) {
+    const data = JSON.stringify({Email: username, Password: password})
+    return await axios.post(`${config.apiUrl}/users/authenticate`, data, { headers: config.headers })
         .then(handleResponse)
         .then(user => {
-            // login successful if there's a jwt token in the response
-            if (user.token) {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('user', JSON.stringify(user))
-            }
-
+            localStorage.setItem('user', JSON.stringify(user))
             return user
         })
 }
@@ -37,53 +26,27 @@ function logout() {
     localStorage.removeItem('user')
 }
 
-function register(user) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-    }
-
-    return fetch(`${apiUrl}/users/register`, requestOptions).then(handleResponse)
+async function register(user) {
+    return await axios.post(`${config.apiUrl}/users/register`, JSON.stringify(user), {headers: config.headers})
+        .then(handleResponse)
 }
 
-function getAll() {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    }
-
-    return fetch(`${apiUrl}/users`, requestOptions).then(handleResponse)
+async function getAll() {
+    return await axios.get(`${config.apiUrl}/users`, {headers: config.headers}).then(handleResponse)
 }
 
 
-function getById(id) {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    }
-
-    return fetch(`${apiUrl}/users/${id}`, requestOptions).then(handleResponse)
+async function getById(id) {
+    return await axios.get(`${config.apiUrl}/users/${id}`, {headers: config.headers}).then(handleResponse)
 }
 
-function update(user) {
-    const requestOptions = {
-        method: 'PUT',
-        headers: { ...authHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-    }
-
-    return fetch(`${apiUrl}/users/${user.id}`, requestOptions).then(handleResponse)
+async function update(user) {
+    return await axios.put(`${config.apiUrl}/users/${user.id}`, JSON.stringify(user), {headers: config.headers}).then(handleResponse)
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
-    const requestOptions = {
-        method: 'DELETE',
-        headers: authHeader()
-    }
-
-    return fetch(`${apiUrl}/users/${id}`, requestOptions).then(handleResponse)
+async function _delete(id) {
+    return await axios.delete(`${config.apiUrl}/users/${id}`).then(handleResponse)
 }
 
 function handleResponse(response) {
