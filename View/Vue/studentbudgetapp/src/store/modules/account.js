@@ -48,9 +48,16 @@ const mutations = {
     }
 }
 
+const getters = {
+    user: (state) => {
+        return state.user.data
+    }
+}
+
 export const account = {
     namespaced: true,
     state,
     actions,
     mutations,
+    getters
 }

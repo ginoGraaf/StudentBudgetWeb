@@ -14,7 +14,6 @@ export const userService = {
 async function login(username, password) {
     const data = JSON.stringify({Email: username, Password: password})
     return await axios.post(`${config.apiUrl}/users/authenticate`, data, { headers: config.headers })
-        .then(handleResponse)
         .then(user => {
             console.log(user)
             localStorage.setItem('user', JSON.stringify(user))
@@ -29,41 +28,25 @@ function logout() {
 
 async function register(user) {
     return await axios.post(`${config.apiUrl}/users/register`, JSON.stringify(user), {headers: config.headers})
-        .then(handleResponse)
 }
 
 async function getAll() {
-    return await axios.get(`${config.apiUrl}/users`, {headers: config.headers}).then(handleResponse)
+    return await axios.get(`${config.apiUrl}/users`, {headers: config.headers})
+        .then(users => {return users})
 }
 
 
 async function getById(id) {
-    return await axios.get(`${config.apiUrl}/users/${id}`, {headers: config.headers}).then(handleResponse)
+    return await axios.get(`${config.apiUrl}/users/${id}`, {headers: config.headers})
+        .then(user => {return user})
 }
 
 async function update(user) {
-    return await axios.put(`${config.apiUrl}/users/${user.id}`, JSON.stringify(user), {headers: config.headers}).then(handleResponse)
+    return await axios.put(`${config.apiUrl}/users/${user.id}`, JSON.stringify(user), {headers: config.headers})
+        .then(user => {return user})
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
 async function _delete(id) {
-    return await axios.delete(`${config.apiUrl}/users/${id}`).then(handleResponse)
-}
-
-function handleResponse(response) {
-    return response.text().then(text => {
-        const data = text && JSON.parse(text)
-        if (!response.ok) {
-            if (response.status === 401) {
-                // auto logout if 401 response returned from api
-                logout()
-                location.reload(true)
-            }
-
-            const error = (data && data.message) || response.statusText
-            return Promise.reject(error)
-        }
-
-        return data
-    })
+    return await axios.delete(`${config.apiUrl}/users/${id}`)
 }
