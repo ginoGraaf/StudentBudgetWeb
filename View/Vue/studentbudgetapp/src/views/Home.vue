@@ -1,20 +1,25 @@
 <template>
-  <div class="home">
-    <div class="grid-container">
-      <div>
-        <OverViewHeader />
-        <!-- Overview component to be added -->
-        <ExpenseOverview/>
+  <div class="home container-fluid">
+    <div class="row justify-content-between">
+      <div class="col-sm-4 text-center">
+        <div class="item">
+          <OverViewHeader />
+          <ExpenseOverview/>
+        </div>
       </div>
-      <div>
-        <ExpensesHeader />
-        <userInfo></userInfo>
-        <PieComponent v-bind="piedata" />
+      <div class="col-sm-4 text-center">
+        <div class="item">
+          <ExpensesHeader />
+          <userInfo></userInfo>
+          <PieComponent v-bind="piedata" />
+        </div>
       </div>
-      <div>
-        <Header />
-          <AddCategory v-on:add-category="addCategory" />
+      <div class="col-sm-4 text-center">
+        <div class="item">
+          <Header />
+          <AddCategory v-on:add-category="createCategory" />
           <Categories v-bind:categories="categories" v-on:del-category="deleteCategory" />
+        </div>
       </div>
     </div>
   </div>
@@ -33,6 +38,8 @@ import ExpenseOverview from '../components/ExpenseOverview';
 import Categories from '../components/Categories';
 import AddCategory from '../components/AddCategory';
 
+import Vue from 'vue'
+import axios from 'axios'
 
 export default {
   name: 'Home',
@@ -46,21 +53,22 @@ export default {
     PieComponent,
     userInfo
   },
+  mounted: function () {
+
+    axios.get('/localhost/api/Category')
+      .then(response => this.categories = response.data)
+      .catch(error => {
+        if (!error.response) {
+            // network error
+            this.errorStatus = 'Error: Network Error';
+        } else {
+            this.errorStatus = error.response.data.message;
+        }
+      })
+  },
   data() {
     return {
-      categories: [
-        {
-          id: 1,
-          title: "Category one",
-          bedrag: "€1.10"
-        },
-        {
-          id: 2,
-          title: "Category two",
-          bedrag: "€1.10"
-        }
-      ]
-      
+      categories: null,
     }
   },
   methods: {
@@ -69,23 +77,31 @@ export default {
     },
     addCategory(newCategory) {
       this.categories = [...this.categories, newCategory];
+    },
+    createCategory(newCategory) {
+  
+      console.log(newCategory);
+        let TestForURL={Id:0,Title:newCategory.title,Bedrag:0};
+        console.log(TestForURL );
+        const url = '/localhost/api/Category';
+      return axios.post(url, TestForURL, {headers:{'Content-Type': 'application/json'}});
     }
   }
 }
 </script>
 
 <style scoped>
-.grid-container {
+.container {
   display: grid;
-  grid-template-columns: auto auto auto;
   grid-gap: 10px;
   padding: 10px;
 }
 
-.grid-container > div {
+.item {
   border: 1px solid black;
   text-align: center;
   font-size: 30px;
+  padding: 0px;
   height: 600px;
 }
 </style>

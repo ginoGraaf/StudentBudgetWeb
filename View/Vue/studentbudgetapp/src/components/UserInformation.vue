@@ -1,6 +1,6 @@
 <template>
     <div class="collectorbody">
-        <H2>username</H2>
+        <h2>username</h2>
         <h2>Balance</h2> 
         <div class="progress">
           <progress max="100" value="70"></progress>
@@ -10,16 +10,17 @@
 
 <script>
 export default {
-    
+    Name: "UserInformation",
 }
 </script>
 
 <style scoped>
 .collectorbody
 {
-        width: 300px;
-        height: 180px;
-        border:  2px solid #fefefe;
+    width: 300px;
+    height: 180px;
+    border:  2px solid #fefefe;
+    margin: auto;
 }
 progress[value]
 {

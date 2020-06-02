@@ -9,8 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Rest.Controllers
 {
     [ApiController]
-    [Route("api/Category/")]
-    [Route("api/Categories/")]
+    [Route("api/Category")]
     public class CategoryController : Controller
     {
         private readonly ApplicationContext _context;
