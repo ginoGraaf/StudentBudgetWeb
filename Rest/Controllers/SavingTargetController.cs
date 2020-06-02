@@ -25,9 +25,9 @@ namespace Rest.Controllers
         // GET: api/SavingTarget/5
         [HttpGet]
         [Route("{Id}")]
-        public async Task<ActionResult<SavingGoalsModel>> Get(int id)
+        public async Task<ActionResult<SavingGoalsModel>> Get(int ID)
         {
-            var savingsGoal = await _context.SavingGoals.FindAsync(id);
+            SavingGoalsModel savingsGoal = await _context.SavingGoals.FindAsync(ID);
             if (savingsGoal == null)
             {
                 return NotFound();
@@ -37,9 +37,12 @@ namespace Rest.Controllers
 
         // POST: api/SavingTarget
         [HttpPost]
-        public void Post([FromBody] SavingGoalsModel savingTarget)
+        public async Task<ActionResult<SavingGoalsModel>> Post([FromBody] SavingGoalsModel savingTarget)
         {
+
             _context.SavingGoals.Add(savingTarget);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetSavingTarget", new { id = savingTarget.ID }, savingTarget);
         }
 
         // PUT: api/SavingTarget/5

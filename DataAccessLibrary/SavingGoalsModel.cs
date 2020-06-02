@@ -14,6 +14,6 @@ namespace DataAccessLibrary
 
         public int UserID { get; set; }
         public string GoalName { get; set; }
-        public int savingAmount { get; set; }
+        public string savingAmount { get; set; }
     }
 }
