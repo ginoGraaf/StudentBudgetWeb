@@ -29,16 +29,21 @@ namespace Rest.Controllers {
         [Route("authenticate")]
         public async Task<ActionResult<User>> Authenticate(User userInfo)
         {
-            var user = await FindByEmail(userInfo.Email);  
+            try {
+                var user = await FindByEmail(userInfo.Email); 
+                if(user.Password == userInfo.Password)
+                {
+                    return user;
+                }
+                else
+                {
+                    return Unauthorized();
+                }
+            } catch (Exception e) {
+                Console.WriteLine(e.Message);
+                return Unauthorized();
+            }
 
-            if(user.Password == userInfo.Password)
-            {
-                return user;
-            }
-            else
-            {
-                return null;
-            }
         }
 
         [HttpGet]

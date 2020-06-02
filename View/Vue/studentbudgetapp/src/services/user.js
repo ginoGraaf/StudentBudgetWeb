@@ -16,6 +16,7 @@ async function login(username, password) {
     return await axios.post(`${config.apiUrl}/users/authenticate`, data, { headers: config.headers })
         .then(handleResponse)
         .then(user => {
+            console.log(user)
             localStorage.setItem('user', JSON.stringify(user))
             return user
         })

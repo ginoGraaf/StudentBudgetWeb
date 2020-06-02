@@ -68,7 +68,8 @@ export default {
   },
   data() {
     return {
-      categories: null,
+      piedata: null,
+      categories: null
     }
   },
   methods: {
