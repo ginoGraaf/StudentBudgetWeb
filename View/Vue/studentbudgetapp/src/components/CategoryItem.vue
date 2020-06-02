@@ -1,7 +1,7 @@
 <template>
     <div class="category-item">
         {{category.title}},
-        {{category.amount}}
+        {{category.bedrag}}
         <button @click="$emit('del-category', category.id)" class="del">X</button>
     </div>
 </template>
