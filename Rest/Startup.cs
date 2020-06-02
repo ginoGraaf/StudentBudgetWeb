@@ -10,11 +10,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using DataAccessLibrary;
+using Microsoft.AspNetCore.Http;
 
 namespace Rest
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,6 +27,16 @@ namespace Rest
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder.WithOrigins(
+                            "http://localhost:8080/").AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            });
+            });
+
             services.AddDbContext<DataAccessLibrary.ApplicationContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
@@ -61,10 +73,19 @@ namespace Rest
 
             app.UseRouting();
 
+            app.UseCors();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapGet("/echo",
+                        context => context.Response.WriteAsync("echo"))
+                    .RequireCors(MyAllowSpecificOrigins);
+
+                endpoints.MapControllers()
+                    .RequireCors(MyAllowSpecificOrigins);
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
