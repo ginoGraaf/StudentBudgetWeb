@@ -24,7 +24,7 @@
 import ChooseCategory from '../components/ChooseCategory.vue';
 import RegularExpense from '../components/RegularExpense.vue';
 
-// import axios from 'axios';
+import axios from 'axios';
 
 export default {
   name: 'AddExpense',
@@ -54,15 +54,15 @@ export default {
     addExpense() {
         console.log('addExpense' + this.regularExpense);
 
-        // const newExpense = {
-        //     name: this.name,
-        //     amount: this.amount,
-        //     regularExpense: this.regularExpense,
-        //     category: this.category
-        // }
-        // // axios.post('', )
-        // .then()
-        // .catch(error => console.log(error));
+        const newExpense = {
+            name: this.name,
+            amount: this.amount,
+            regularExpense: this.regularExpense,
+            category: this.category
+        }
+        axios.post('/api/Expense', newExpense)
+        .then()
+        .catch(error => console.log(error));
         this.$router.push('/');
     }
 
