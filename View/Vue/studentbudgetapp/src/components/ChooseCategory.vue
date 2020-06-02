@@ -28,7 +28,7 @@ export default {
         }
     },
     created() {
-        axios.get('localhost:8080/api/Category/').then(res => this.Categories = res.data).catch(err => console.log(err));
+        axios.get('https://localhost:5001/api/Category/').then(res => this.Categories = res.data).catch(err => console.log(err));
     }
 }
 </script>
