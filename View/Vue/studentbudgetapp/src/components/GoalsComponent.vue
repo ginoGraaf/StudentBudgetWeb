@@ -1,9 +1,9 @@
 <template>
 <div>
-  <form>
+  <form @submit="SendData()" @submit.prevent>
   <input v-model="EarningGoal" type="Text" placeholder="Place enter a savings target?">
   <input v-model="Money" type="number" step="0.01" max=”0″ placeholder="0">
-  <button type="submit" @click="SendData">Set Goal</button>
+  <button type="submit" value="Submit">Set Goal</button>
   </form>
 </div>
 </template>>
@@ -17,21 +17,23 @@ export default {
             EarningGoal:"",
             Money:0.00,
             Goal:{GoalName:"",ID:0,UserID:0,savingAmount:0}
+            ,getStuff:[]
            }
        },
         mounted: function () {
-
-        axios.get('/localhost/api/SavingTarget/1').then(response => this.Goal = response.data)
-        console.log(this.Goal);
+    
+        axios.get('/localhost/api/SavingTarget/1').then(response =>{ this.getStuff = response.data;
+        console.log(response.data)})
+        console.log(this.getStuff.data);
       },
     methods:{
      
        SendData()
         {
               const url = '/localhost/api/SavingTarget';
-              let SaveGoal={GoalName:this.EarningGoal,ID:1,UserID:1,savingAmount:this.Money.toString()};
-          axios.post(url,SaveGoal,{headers:{'Content-Type': 'application/json'}});
-            console.log(SaveGoal.GoalName+"  "+SaveGoal.savingGoal);
+              let SaveGoal={GoalName:this.EarningGoal,ID:0,UserID:0,savingAmount:this.Money.toString()};
+            axios.post(url,SaveGoal,{headers:{'Content-Type': 'application/json'}});
+            console.log(SaveGoal.GoalName+"  "+SaveGoal.savingAmount);
             console.log("test");
         }
     }

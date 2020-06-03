@@ -11,27 +11,32 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Rest.Controllers
 {
-    [Route("api/SavingTarget")]
+
     [ApiController]
+    [Route("api/SavingTarget")]
     public class SavingTargetController : ControllerBase
     {
         private readonly ApplicationContext _context;
 
         public SavingTargetController(ApplicationContext context)
         {
-
             this._context = context;
         }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<SavingGoalsModel>>> GetSavingTargets()
+        {
+            List<SavingGoalsModel> Allgoals = new List<SavingGoalsModel>();
+            Allgoals= await _context.SavingGoals.ToListAsync();
+            return Allgoals;
+        }
+
         // GET: api/SavingTarget/5
         [HttpGet]
         [Route("{Id}")]
-        public async Task<ActionResult<SavingGoalsModel>> Get(int ID)
+        public async Task<ActionResult<SavingGoalsModel>> Get(int id)
         {
-            SavingGoalsModel savingsGoal = await _context.SavingGoals.FindAsync(ID);
-            if (savingsGoal == null)
-            {
-                return NotFound();
-            }
+            var savingsGoal =await _context.SavingGoals.FindAsync(id);
             return savingsGoal;
         }
 
@@ -39,10 +44,9 @@ namespace Rest.Controllers
         [HttpPost]
         public async Task<ActionResult<SavingGoalsModel>> Post([FromBody] SavingGoalsModel savingTarget)
         {
-
             _context.SavingGoals.Add(savingTarget);
             await _context.SaveChangesAsync();
-            return CreatedAtAction("GetSavingTarget", new { id = savingTarget.ID }, savingTarget);
+            return CreatedAtAction("GetSavingTargets", new SavingGoalsModel() );
         }
 
         // PUT: api/SavingTarget/5
