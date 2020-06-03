@@ -8,8 +8,6 @@ const state = user
 
 const actions = {
     login({ commit }, { username, password }) {
-        commit('loginRequest', { username })
-
         userService.login(username, password)
             .then(
                 user => {
@@ -18,7 +16,6 @@ const actions = {
                 },
                 error => {
                     commit('loginFailure', error)
-                    
                 }
             )
     },
@@ -27,48 +24,34 @@ const actions = {
         commit('logout')
     },
     register({ commit }, user) {
-        commit('registerRequest', user)
-
         userService.register(user)
             .then(
-                user => {
-                    commit('registerSuccess', user)
-                    router.push('/login')
-                    
-                },
-                error => {
-                    commit('registerFailure', error)
-                    
-                }
-            )
+                router.push('/login')
+            ).then(commit('register'))
     }
 }
 
 const mutations = {
-    loginRequest(state, user) {
-        state.status = { loggingIn: true }
-        state.user = user
-    },
     loginSuccess(state, user) {
         state.status = { loggedIn: true }
         state.user = user
     },
     loginFailure(state) {
-        state.status = {}
         state.user = null
     },
     logout(state) {
         state.status = {}
         state.user = null
     },
-    registerRequest(state) {
-        state.status = { registering: true }
-    },
-    registerSuccess(state) {
+    register(state) {
         state.status = {}
-    },
-    registerFailure(state) {
-        state.status = {}
+        state.user = null
+    }
+}
+
+const getters = {
+    user: (state) => {
+        return state.user.data
     }
 }
 
@@ -77,4 +60,5 @@ export const account = {
     state,
     actions,
     mutations,
+    getters
 }
