@@ -54,7 +54,6 @@ export default {
     userInfo
   },
   mounted: function () {
-
     axios.get('/localhost/api/Category')
       .then(response => this.categories = response.data )
       .catch(error => {
@@ -68,23 +67,26 @@ export default {
   },
   data() {
     return {
-      categories: null,
+      piedata: null,
+      categories: null
     }
   },
   methods: {
     deleteCategory(id) {
-      this.categories = this.categories.filter(category => category.id !== id);
-    },
-    addCategory(newCategory) {
-      this.categories = [...this.categories, newCategory];
+      axios.delete('/localhost/api/Category/' + id)
+      .then(response => {
+        const categoryIndex = this.categories = this.categories.filter(category => category.id !== id)
+      })
     },
     createCategory(newCategory) {
-  
-      console.log(newCategory);
+      if(newCategory.title != "") {
         let TestForURL={Id:0,Title:newCategory.title,Bedrag:0};
-        console.log(TestForURL );
         const url = '/localhost/api/Category';
-      return axios.post(url, TestForURL, {headers:{'Content-Type': 'application/json'}});
+        axios.post(url, TestForURL, {headers:{'Content-Type': 'application/json'}});
+      }
+      else{
+        alert("missing title!");
+      }
     }
   }
 }

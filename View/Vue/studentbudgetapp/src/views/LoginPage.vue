@@ -41,7 +41,6 @@ export default {
             const { username, password } = this;
             if (username && password) {
                 this.login({ username, password })
-                this.$router.push({ name: 'Home' });
             }
         }
     },
