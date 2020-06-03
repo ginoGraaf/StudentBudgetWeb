@@ -27,7 +27,11 @@ function logout() {
 }
 
 async function register(user) {
-    return await axios.post(`${config.apiUrl}/users/register`, JSON.stringify(user), {headers: config.headers})
+    const data = JSON.stringify(user)
+    return await axios.post(`${config.apiUrl}/users/`, data, {headers: config.headers})
+        .then(user => {
+            return user
+        })
 }
 
 async function getAll() {
