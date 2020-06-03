@@ -60,7 +60,7 @@ export default {
             regularExpense: this.regularExpense,
             category: this.category
         }
-        axios.post('/api/Expense', newExpense)
+        axios.post('/localhost/api/Expense/', newExpense)
         .then()
         .catch(error => console.log(error));
         this.$router.push('/');

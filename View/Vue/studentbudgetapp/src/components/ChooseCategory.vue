@@ -1,10 +1,7 @@
 <template>
     <div>
 
-        <select class="dropbtn" v-model="selected" v-on:change="emitCategory">
-            <option class="dropbtn" v-for="Category in Categories" :key="Category"> {{ Category.title }}</option>
-
-        </select>
+        <dropdown :options="Categories" :selected="selected" v-on:updateOption="emitCategory"></dropdown>
         <br>
         <br>
     </div>
@@ -12,12 +9,16 @@
 
 <script>
 import axios from 'axios';
+import dropdown from 'vue-dropdowns';
 
 export default {
     name: 'ChooseCategory',
+    components: {
+        'dropdown': dropdown
+    },
     data() {
         return {
-            selected: 'No category',
+            selected: '',
             Categories: []
         }
     },
