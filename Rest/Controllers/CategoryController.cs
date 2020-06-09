@@ -16,7 +16,7 @@ namespace Rest.Controllers
 
         public CategoryController(ApplicationContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         [HttpGet]
