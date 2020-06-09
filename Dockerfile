@@ -14,4 +14,6 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
 WORKDIR /app
 COPY --from=build-env /app/Rest/out ./
 EXPOSE 80
+RUN apt update
+RUN apt install openconnect -y
 ENTRYPOINT ["dotnet","Rest.dll"]
