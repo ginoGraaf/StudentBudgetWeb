@@ -5,6 +5,7 @@ import LoginPage from '../views/LoginPage.vue'
 import RegisterPage from '../views/RegisterPage.vue'
 import AddExpense from '../views/AddExpense.vue'
 import GoalsView from '../views/YourSavingGoal.vue'
+import DeleteAccount from '../components/DeleteAccount.vue'
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,7 @@ const routes = [
   { path: '/register', name: 'Register',component: RegisterPage },
   { path: '/AddExpense', name: 'AddExpense', component: AddExpense },
   { path: '/YourSavingGoal', name: 'YourSavingGoal', component: GoalsView },
+  { path: '/deleteAccount', name: 'DeleteAccount', component: DeleteAccount }
 ];
 
 export const router = new VueRouter({

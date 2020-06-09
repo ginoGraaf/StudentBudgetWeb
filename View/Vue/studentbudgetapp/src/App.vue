@@ -3,18 +3,20 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/AddExpense">AddExpense</router-link> | 
-      <router-link to="/login">Login</router-link> | 
-      <router-link to="/register">Register</router-link>|
-      <router-link to="/YourSavingGoal">Set Saving Goal</router-link>
+      <router-link to="/YourSavingGoal">Set Saving Goal</router-link> |
+      <router-link to="/login">{{ loginText }}</router-link> | 
+      <router-link v-if="loggedIn" to="/deleteAccount">Delete Account</router-link>
+      <router-link v-else to="/register">Register</router-link>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <script>
-
+import { mapGetters } from 'vuex'
 export default {
-  name: 'App'
+  name: 'App',
+  computed: mapGetters('account', ['loginText', 'loggedIn'])
 }
 </script>
 
