@@ -11,7 +11,7 @@
         <div class="item">
           <ExpensesHeader />
           <userInfo></userInfo>
-          <PieComponent v-bind="piedata" />
+          <PieComponent v-bind:categories="categories" />
         </div>
       </div>
       <div class="col-sm-4 text-center">
@@ -68,8 +68,9 @@ export default {
   },
   data() {
     return {
-      piedata: null,
-      categories: null
+      
+      categories: null,
+      piedata: null
     }
   },
   methods: {

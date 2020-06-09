@@ -11,6 +11,7 @@ export default {
     computed:{
         pieStyle()
         {
+            console.log(this.pieData);
             let sum=0;
             let style=this.pieData.map(
                 piePart=> `${piePart.color} 0 ${sum+=piePart.value}%`
