@@ -1,7 +1,8 @@
 <template>
     <div>
-
-        <dropdown :options="Categories" :selected="selected" v-on:updateOption="emitCategory"></dropdown>
+        <select class="dropbtn" v-model="selected" v-on:change="emitCategory">
+            <option class="dropbtn" v-for="category in categories" :key="category.id" :value="category.id">{{ category.title }}</option>
+        </select>
         <br>
         <br>
     </div>
@@ -9,17 +10,13 @@
 
 <script>
 import axios from 'axios';
-import dropdown from 'vue-dropdowns';
 
 export default {
     name: 'ChooseCategory',
-    components: {
-        'dropdown': dropdown
-    },
     data() {
         return {
             selected: '',
-            Categories: []
+            categories: []
         }
     },
     methods: {
@@ -29,7 +26,7 @@ export default {
         }
     },
     created() {
-        axios.get('https://localhost:5001/api/Category/').then(res => this.Categories = res.data).catch(err => console.log(err));
+        axios.get('https://localhost:5001/api/Category/').then(res => this.categories = res.data).catch(err => console.log(err));
     }
 }
 </script>

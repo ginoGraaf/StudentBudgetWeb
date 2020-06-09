@@ -1,6 +1,6 @@
 <template>
   <div class="AddExpense">
-    <form @submit="addExpense()" @submit.prevent>
+    <form @submit="addExpense" @submit.prevent>
       <div>
         <input type="text" placeholder="Name" v-model="name">
       </div>
