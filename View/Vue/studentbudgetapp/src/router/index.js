@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import LoginPage from '../views/LoginPage.vue'
 import RegisterPage from '../views/RegisterPage.vue'
 import AddExpense from '../views/AddExpense.vue'
+import GoalsView from '../views/YourSavingGoal.vue'
 
 Vue.use(VueRouter)
 
@@ -12,6 +13,7 @@ const routes = [
   { path: '/login', name: 'Login', component: LoginPage},
   { path: '/register', name: 'Register',component: RegisterPage },
   { path: '/AddExpense', name: 'AddExpense', component: AddExpense },
+  { path: '/YourSavingGoal', name: 'YourSavingGoal', component: GoalsView },
 ];
 
 export const router = new VueRouter({
@@ -25,8 +27,8 @@ router.beforeEach((to, from, next) => {
   const loggedIn = localStorage.getItem('user')
 
   if (authRequired && !loggedIn) {
-    //return next('/login')
-    next()
+    return next('/login')
+    // next()
   } else {
     next()
   }

@@ -1,6 +1,6 @@
 <template>
     <div class="collectorbody">
-        <h2>username</h2>
+        <h2>{{ user.name }}</h2>
         <h2>Balance</h2> 
         <div class="progress">
           <progress max="100" value="70"></progress>
@@ -9,8 +9,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
     Name: "UserInformation",
+    computed: mapGetters('account', ['user'])
 }
 </script>
 

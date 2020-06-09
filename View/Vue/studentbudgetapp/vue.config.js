@@ -7,7 +7,7 @@ module.exports = {
                 secure:false,
                 ws: false,
                 pathRewrite: {'/localhost':''},
-          logLevel: 'debug' 
+                logLevel: 'debug' 
             }
         }
     }
