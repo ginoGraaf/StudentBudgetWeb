@@ -5,25 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200414130419_InitalDbMigraion.cs" />
-    <Compile Remove="Migrations\20200414130419_InitalDbMigraion.Designer.cs" />
-    <Compile Remove="Migrations\20200526085024_SavingGoalsMode.cs" />
-    <Compile Remove="Migrations\20200526085024_SavingGoalsMode.Designer.cs" />
-    <Compile Remove="Migrations\20200526115202_SavingGoalsModel.cs" />
-    <Compile Remove="Migrations\20200526115202_SavingGoalsModel.Designer.cs" />
-    <Compile Remove="Migrations\20200526115555_SavingGoalsModel.cs" />
-    <Compile Remove="Migrations\20200526115555_SavingGoalsModel.Designer.cs" />
-    <Compile Remove="Migrations\20200526120159_Categories.cs" />
-    <Compile Remove="Migrations\20200526120159_Categories.Designer.cs" />
-    <Compile Remove="Migrations\20200526120835_Categories.cs" />
-    <Compile Remove="Migrations\20200526120835_Categories.Designer.cs" />
-    <Compile Remove="Migrations\20200526121754_Categories.cs" />
-    <Compile Remove="Migrations\20200526121754_Categories.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

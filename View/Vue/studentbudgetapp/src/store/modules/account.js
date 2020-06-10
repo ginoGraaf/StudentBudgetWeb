@@ -40,11 +40,11 @@ const mutations = {
         state.user = null
     },
     logout(state) {
-        state.status = {loginText: "Login"}
+        state.status = {loginText: "Login", loggedIn: false}
         state.user = null
     },
     register(state) {
-        state.status = {loginText: "Login"}
+        state.status = {loginText: "Login", loggedIn: false}
         state.user = null
     }
 }
