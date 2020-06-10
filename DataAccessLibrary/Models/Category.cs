@@ -1,11 +1,13 @@
-﻿using System;
+﻿using DataAccessLibrary;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations;
 
 
-namespace DataAccessLibrary.Models
+namespace DataAccessLibrary
 {
     public class Category
     {

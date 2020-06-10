@@ -4,22 +4,50 @@ using DataAccessLibrary;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccessLibrary.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20200526120250_SavingGoals")]
+    partial class SavingGoals
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DataAccessLibrary.Category", b =>
+            modelBuilder.Entity("DataAccessLibrary.Expense", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Regulation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Expenses");
+                });
+
+            modelBuilder.Entity("DataAccessLibrary.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -37,32 +65,6 @@ namespace DataAccessLibrary.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("DataAccessLibrary.Expense", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Amount")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Regulation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Expenses");
-                });
-
             modelBuilder.Entity("DataAccessLibrary.SavingGoalsModel", b =>
                 {
                     b.Property<int>("ID")
@@ -76,8 +78,8 @@ namespace DataAccessLibrary.Migrations
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
-                    b.Property<string>("savingAmount")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("savingAmount")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -91,15 +93,7 @@ namespace DataAccessLibrary.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -109,9 +103,9 @@ namespace DataAccessLibrary.Migrations
 
             modelBuilder.Entity("DataAccessLibrary.Expense", b =>
                 {
-                    b.HasOne("DataAccessLibrary.Category", "Category")
+                    b.HasOne("DataAccessLibrary.Models.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("CategoryId");
                 });
 #pragma warning restore 612, 618
         }

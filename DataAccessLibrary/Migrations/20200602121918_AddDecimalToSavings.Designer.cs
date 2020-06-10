@@ -4,18 +4,20 @@ using DataAccessLibrary;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccessLibrary.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20200602121918_AddDecimalToSavings")]
+    partial class AddDecimalToSavings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -44,8 +46,11 @@ namespace DataAccessLibrary.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Amount")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -53,12 +58,9 @@ namespace DataAccessLibrary.Migrations
                     b.Property<string>("Regulation")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Expenses");
                 });
@@ -76,8 +78,8 @@ namespace DataAccessLibrary.Migrations
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
-                    b.Property<string>("savingAmount")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("savingAmount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ID");
 
@@ -111,7 +113,7 @@ namespace DataAccessLibrary.Migrations
                 {
                     b.HasOne("DataAccessLibrary.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("CategoryId");
                 });
 #pragma warning restore 612, 618
         }
