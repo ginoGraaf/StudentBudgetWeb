@@ -2,7 +2,7 @@
 
 namespace DataAccessLibrary.Migrations
 {
-    public partial class ChangingCatergorytoCatergoryId : Migration
+    public partial class Testingonemoretime : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -1,7 +1,7 @@
 <template>
     <div>
         <select class="dropbtn" v-model="selected" v-on:change="emitCategory">
-            <option class="dropbtn" v-for="category in categories" :key="category.id" :value="category.id">{{ category.title }}</option>
+            <option class="dropbtn" v-for="category in categories" :key="category.id" :value="category">{{ category.title }}</option>
         </select>
         <br>
         <br>
