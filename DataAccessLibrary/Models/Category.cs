@@ -15,7 +15,7 @@ namespace DataAccessLibrary
         public int Id { get; set; }
         public string Title { get; set; }
         public double Bedrag { get; set; }
-        public int UserId { get; set; }
+        public User User { get; set; }
 
     }
 }
