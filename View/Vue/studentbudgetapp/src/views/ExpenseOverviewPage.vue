@@ -16,7 +16,7 @@
                     <td>&euro;{{ expense.amount }}</td>
                     <td>{{ expense.category }}</td>
                     <td>{{ expense.regulation }}</td>
-                    <td>{{ expense.regulation }}</td>
+                    <td><button @click="deleteExpense(expense.id)" class="del">X</button></td>
                 </tr>
             </tbody>
         </table>
@@ -31,7 +31,7 @@ export default {
         ...mapGetters('expenses', ['allExpenses'])
     },
     methods: {
-        ...mapActions('expenses', ['getAll'])
+        ...mapActions('expenses', ['getAll', 'deleteExpense'])
     },
     created() {
         this.getAll()
@@ -40,5 +40,13 @@ export default {
 </script>
 
 <style scoped>
-
+.del {
+    background: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 0px 9px;
+    border-radius: 50%;
+    cursor: pointer;
+    float: right;
+}
 </style>

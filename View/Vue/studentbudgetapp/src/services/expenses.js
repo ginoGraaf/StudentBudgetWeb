@@ -41,6 +41,7 @@ function update() {
 
 }
 
-function deleteById() {
-
+async function deleteById(id) {
+    return await axios.delete(`${config.apiUrl}/Expense/${id}`, {headers: config.headers})
+        .then(resp => {return resp.data})
 }
