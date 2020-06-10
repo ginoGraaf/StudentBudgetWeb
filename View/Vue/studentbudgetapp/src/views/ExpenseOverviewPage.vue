@@ -5,12 +5,18 @@
                 <tr>
                     <th scope='col'>Expense</th>
                     <th scope='col'>Amount</th>
+                    <th scope='col'>Category</th>
+                    <th scope='col'>Regulation</th>
+                    <th scope='col'>Delete expense</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="expense in allExpenses" :key="expense.id">
                     <td>{{ expense.name }}</td>
                     <td>&euro;{{ expense.amount }}</td>
+                    <td>{{ expense.category }}</td>
+                    <td>{{ expense.regulation }}</td>
+                    <td>{{ expense.regulation }}</td>
                 </tr>
             </tbody>
         </table>
@@ -20,7 +26,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 export default {
-    name: "ExpenseOverview",
+    name: 'ExpenseOverviewPage',
     computed: {
         ...mapGetters('expenses', ['allExpenses'])
     },

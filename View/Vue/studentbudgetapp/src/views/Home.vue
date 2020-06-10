@@ -55,8 +55,7 @@ export default {
   },
   mounted: function () {
     axios.get('/localhost/api/Category')
-      .then(response => this.categories = response.data)
-      .then(response => console.log(response))
+      .then(response => this.categories = response.data )
       .catch(error => {
         if (!error.response) {
             // network error

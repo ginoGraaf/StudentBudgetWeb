@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DataAccessLibrary;
+
 using DataAccessLibrary.Logic;
 using DataAccessLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +14,7 @@ namespace Rest.Controllers
 
         public CategoryController(ApplicationContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         [HttpGet]
