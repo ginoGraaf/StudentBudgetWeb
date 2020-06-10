@@ -32,8 +32,9 @@ async function getAll() {
     // }
 }
 
-function getById() {
-
+async function getById(id) {
+    return await axios.get(`${config.apiUrl}/Expense/${id}`, {headers: config.headers})
+        .then(resp => {return resp.data})
 }
 
 function update() {

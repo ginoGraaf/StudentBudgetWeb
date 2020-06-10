@@ -3,8 +3,8 @@ import { router } from '../../router'
 
 const user = JSON.parse(localStorage.getItem('user'))
 const state = user
-    ? { status: { loggedIn: true }, user }
-    : { status: {}, user: null }
+    ? { status: { loginText: "Logout", loggedIn: true }, user }
+    : { status: { loginText: "Login", loggedIn: false }, user: null }
 
 const actions = {
     login({ commit }, { username, password }) {
@@ -23,27 +23,28 @@ const actions = {
         userService.logout()
         commit('logout')
     },
-    register(userToRegister) {
-        userService.register(userToRegister)
+    register({ commit }, user) {
+        userService.register(user)
             .then(
-                user => {
-                    router.push('/login')
-                    return user
-                }
-            )
+                router.push('/login')
+            ).then(commit('register'))
     }
 }
 
 const mutations = {
     loginSuccess(state, user) {
-        state.status = { loggedIn: true }
+        state.status = { loginText: "Logout", loggedIn: true }
         state.user = user
     },
     loginFailure(state) {
         state.user = null
     },
     logout(state) {
-        state.status = {}
+        state.status = {loginText: "Login", loggedIn: false}
+        state.user = null
+    },
+    register(state) {
+        state.status = {loginText: "Login", loggedIn: false}
         state.user = null
     }
 }
@@ -51,6 +52,12 @@ const mutations = {
 const getters = {
     user: (state) => {
         return state.user.data
+    },
+    loginText: (state) => {
+        return state.status.loginText
+    },
+    loggedIn: (state) => {
+        return state.status.loggedIn
     }
 }
 

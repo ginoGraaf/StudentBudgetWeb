@@ -8,7 +8,7 @@ export const userService = {
     getAll,
     getById,
     update,
-    delete: _delete
+    deleteAccount
 }
 
 async function login(username, password) {
@@ -27,7 +27,11 @@ function logout() {
 }
 
 async function register(user) {
-    return await axios.post(`${config.apiUrl}/users/register`, JSON.stringify(user), {headers: config.headers})
+    const data = JSON.stringify(user)
+    return await axios.post(`${config.apiUrl}/users/`, data, {headers: config.headers})
+        .then(user => {
+            return user
+        })
 }
 
 async function getAll() {
@@ -46,7 +50,7 @@ async function update(user) {
         .then(user => {return user})
 }
 
-// prefixed function name with underscore because delete is a reserved word in javascript
-async function _delete(id) {
+async function deleteAccount(id) {
+    console.log('deleting')
     return await axios.delete(`${config.apiUrl}/users/${id}`)
 }

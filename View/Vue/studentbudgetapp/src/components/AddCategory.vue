@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit="addCategory()" @submit.prevent>
+        <form @submit="addCategory()">
             <input type="text" v-model="title" name="title" placeholder="Add Category...">
             <input type="submit" value="Submit" class="btn">
         </form>

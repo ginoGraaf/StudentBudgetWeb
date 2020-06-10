@@ -4,6 +4,9 @@ import Home from '../views/Home.vue'
 import LoginPage from '../views/LoginPage.vue'
 import RegisterPage from '../views/RegisterPage.vue'
 import AddExpense from '../views/AddExpense.vue'
+import GoalsView from '../views/YourSavingGoal.vue'
+import DeleteAccount from '../components/DeleteAccount.vue'
+import ExpenseOverviewPage from "../views/ExpenseOverviewPage.vue";
 
 Vue.use(VueRouter)
 
@@ -12,6 +15,9 @@ const routes = [
   { path: '/login', name: 'Login', component: LoginPage},
   { path: '/register', name: 'Register',component: RegisterPage },
   { path: '/AddExpense', name: 'AddExpense', component: AddExpense },
+  { path: '/YourSavingGoal', name: 'YourSavingGoal', component: GoalsView },
+  { path: '/deleteAccount', name: 'DeleteAccount', component: DeleteAccount },
+  { path: '/viewExpenses', name: 'ExpenseOverviewPage', component: ExpenseOverviewPage }
 ];
 
 export const router = new VueRouter({
