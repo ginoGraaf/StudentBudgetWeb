@@ -2,6 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
+      <router-link to="/viewExpenses">View Expenses</router-link> | 
       <router-link to="/AddExpense">AddExpense</router-link> | 
       <router-link to="/YourSavingGoal">Set Saving Goal</router-link> |
       <router-link to="/login">{{ loginText }}</router-link> | 
