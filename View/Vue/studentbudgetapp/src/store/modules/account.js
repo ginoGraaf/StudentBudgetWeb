@@ -3,13 +3,11 @@ import { router } from '../../router'
 
 const user = JSON.parse(localStorage.getItem('user'))
 const state = user
-    ? { status: { loggedIn: true }, user }
-    : { status: {}, user: null }
+    ? { status: { loginText: "Logout", loggedIn: true }, user }
+    : { status: { loginText: "Login", loggedIn: false }, user: null }
 
 const actions = {
     login({ commit }, { username, password }) {
-        commit('loginRequest', { username })
-
         userService.login(username, password)
             .then(
                 user => {
@@ -18,7 +16,6 @@ const actions = {
                 },
                 error => {
                     commit('loginFailure', error)
-                    
                 }
             )
     },
@@ -27,48 +24,40 @@ const actions = {
         commit('logout')
     },
     register({ commit }, user) {
-        commit('registerRequest', user)
-
         userService.register(user)
             .then(
-                user => {
-                    commit('registerSuccess', user)
-                    router.push('/login')
-                    
-                },
-                error => {
-                    commit('registerFailure', error)
-                    
-                }
-            )
+                router.push('/login')
+            ).then(commit('register'))
     }
 }
 
 const mutations = {
-    loginRequest(state, user) {
-        state.status = { loggingIn: true }
-        state.user = user
-    },
     loginSuccess(state, user) {
-        state.status = { loggedIn: true }
+        state.status = { loginText: "Logout", loggedIn: true }
         state.user = user
     },
     loginFailure(state) {
-        state.status = {}
         state.user = null
     },
     logout(state) {
-        state.status = {}
+        state.status = {loginText: "Login", loggedIn: false}
         state.user = null
     },
-    registerRequest(state) {
-        state.status = { registering: true }
+    register(state) {
+        state.status = {loginText: "Login", loggedIn: false}
+        state.user = null
+    }
+}
+
+const getters = {
+    user: (state) => {
+        return state.user.data
     },
-    registerSuccess(state) {
-        state.status = {}
+    loginText: (state) => {
+        return state.status.loginText
     },
-    registerFailure(state) {
-        state.status = {}
+    loggedIn: (state) => {
+        return state.status.loggedIn
     }
 }
 
@@ -77,4 +66,5 @@ export const account = {
     state,
     actions,
     mutations,
+    getters
 }

@@ -29,16 +29,21 @@ namespace Rest.Controllers {
         [Route("authenticate")]
         public async Task<ActionResult<User>> Authenticate(User userInfo)
         {
-            var user = await FindByEmail(userInfo.Email);  
+            try {
+                var user = await FindByEmail(userInfo.Email); 
+                if(user.Password == userInfo.Password)
+                {
+                    return user;
+                }
+                else
+                {
+                    return Unauthorized();
+                }
+            } catch (Exception e) {
+                Console.WriteLine(e.Message);
+                return Unauthorized();
+            }
 
-            if(user.Password == userInfo.Password)
-            {
-                return user;
-            }
-            else
-            {
-                return null;
-            }
         }
 
         [HttpGet]
@@ -48,8 +53,8 @@ namespace Rest.Controllers {
 
         [HttpGet]
         [Route("{Id}")]
-        public async Task<ActionResult<User>> GetUser(int id) {
-            var user = await _context.Users.FindAsync(id);
+        public async Task<ActionResult<User>> GetUser(int Id) {
+            var user = await _context.Users.FindAsync(Id);
             if (user == null) {
                 return NotFound();
             }
@@ -65,9 +70,9 @@ namespace Rest.Controllers {
         }
 
         [HttpPut("{Id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> PutUser(int Id, User user)
         {
-            if (id != user.Id)
+            if (Id != user.Id)
             {
                 return BadRequest();
             }
@@ -80,7 +85,7 @@ namespace Rest.Controllers {
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!UserExists(Id))
                 {
                     return NotFound();
                 }
@@ -94,9 +99,9 @@ namespace Rest.Controllers {
         }
 
         [HttpDelete("{Id}")]
-        public async Task<ActionResult<User>> DeleteUser(int id) {
+        public async Task<ActionResult<User>> DeleteUser(int Id) {
             // Delete user
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.Users.FindAsync(Id);
             if (user == null)
             {
                 return NotFound();
@@ -108,8 +113,8 @@ namespace Rest.Controllers {
             return user;
         }
 
-        private bool UserExists(int id) {
-            return _context.Users.Any(e => e.Id == id);
+        private bool UserExists(int Id) {
+            return _context.Users.Any(e => e.Id == Id);
         }
 
         private async Task<User> FindByEmail(string email)
