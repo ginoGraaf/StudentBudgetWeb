@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLibrary.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200602090109_maken amount an decimal instead of int")]
-    partial class makenamountandecimalinsteadofint
+    [Migration("20200610090241_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,11 +28,8 @@ namespace DataAccessLibrary.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
+                    b.Property<string>("Amount")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -40,9 +37,12 @@ namespace DataAccessLibrary.Migrations
                     b.Property<string>("Regulation")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Expenses");
                 });
@@ -60,7 +60,12 @@ namespace DataAccessLibrary.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Categories");
                 });
@@ -90,9 +95,16 @@ namespace DataAccessLibrary.Migrations
 
             modelBuilder.Entity("DataAccessLibrary.Expense", b =>
                 {
-                    b.HasOne("DataAccessLibrary.Models.Category", "Category")
+                    b.HasOne("DataAccessLibrary.User", "User")
                         .WithMany()
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("DataAccessLibrary.Models.Category", b =>
+                {
+                    b.HasOne("DataAccessLibrary.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

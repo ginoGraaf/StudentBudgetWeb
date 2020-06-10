@@ -4,16 +4,14 @@ using DataAccessLibrary;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccessLibrary.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200610080705_Removing Category Trying to fix other stuff")]
-    partial class RemovingCategoryTryingtofixotherstuff
+    partial class ApplicationContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
