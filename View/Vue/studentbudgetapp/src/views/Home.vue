@@ -54,7 +54,11 @@ export default {
     userInfo
   },
   mounted: function () {
-    axios.get('/localhost/api/Category')
+    axios.get('/localhost/api/Category', {
+      params: {
+        id: this.id
+      }
+    })
       .then(response => this.categories = response.data )
       .catch(error => {
         if (!error.response) {
