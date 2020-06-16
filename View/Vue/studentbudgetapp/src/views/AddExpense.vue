@@ -62,7 +62,7 @@ export default {
             amount: this.amount,
             regularExpense: this.regularExpense,
             category: this.category,
-            user: this.user,
+            user: this.user
         }
         console.log('user = ' + this.user)
         axios.post('/localhost/api/Expense/', newExpense)
