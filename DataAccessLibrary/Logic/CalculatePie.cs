@@ -11,21 +11,21 @@ namespace DataAccessLibrary.Logic
 {
     public class CalculatePie
     {
-        //ApplicationContext application;
-        //public CalculatePie(ApplicationContext application)
-        //{
-        //    this.application = application;
-        //}
+        ApplicationContext application;
+        public CalculatePie(ApplicationContext application)
+        {
+            this.application = application;
+        }
 
-        ////later make this user ID.
-        //public async Task<IEnumerable<PieModel>>GetPieData( int userID)
-        //{
-        //    List<Category> category = new List<Category>();
-        //    category = await application.Categories.Where(c => c.UserId == userID).ToListAsync();
-        //    List<PieModel> pieData = new List<PieModel>();
-        //    pieData =CreateData(category, GetTotalAmount(category));
-        //    return pieData;
-        //}
+        //later make this user ID.
+        public async Task<IEnumerable<PieModel>> GetPieData(int userID)
+        {
+            List<Category> category = new List<Category>();
+            category = await application.Categories.Where(c => c.UserId == userID).ToListAsync();
+            List<PieModel> pieData = new List<PieModel>();
+            pieData = CreateData(category, GetTotalAmount(category));
+            return pieData;
+        }
 
         List<PieModel>CreateData(List<Category> category, double amount)
         {
