@@ -11,6 +11,7 @@
                 <label htmlFor="password">Password</label>
                 <input type="password" v-model="password" name="password" class="form-control" :class="{ 'is-invalid': submitted && !password }" />
                 <div v-show="submitted && !password" class="invalid-feedback">Password is required</div>
+                <div v-show="wrong_login" class="invalid-feedback">Email or password is wrong.</div>
             </div>
             <div class="form-group">
                 <button class="btn btn-primary">Login</button>
@@ -21,7 +22,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapGetters, mapState, mapActions } from 'vuex'
 
 export default {
     data () {
@@ -32,7 +33,8 @@ export default {
         }
     },
     computed: {
-        ...mapState('account', ['status'])
+        ...mapState('account', ['status']),
+        ...mapGetters('account', ['wrong_login'])
     },
     methods: {
         ...mapActions('account', ['login', 'logout']),
