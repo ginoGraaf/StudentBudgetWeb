@@ -11,8 +11,6 @@ namespace DataAccessLibrary
     {
         [Key]
         public int Id { get; set; }
-        [ForeignKey("UserID")]
-        public int UserID { get; set; }
         public string Name { get; set; }
         public string Amount { get; set; }
         public string Regulation { get; set; }

@@ -1,9 +1,11 @@
 ﻿using DataAccessLibrary.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DataAccessLibrary.Logic
 {
@@ -16,11 +18,13 @@ namespace DataAccessLibrary.Logic
         }
 
         //later make this user ID.
-        public List<PieModel>GetPieData()
+        public async Task<IEnumerable<PieModel>>GetPieData( int userID)
         {
             List<Category> category = new List<Category>();
-            category = application.Categories.ToList();
-            return CreateData(category, GetTotalAmount(category));
+            category = await application.Categories.Where(c => c.User.Id == userID).ToListAsync();
+            List<PieModel> pieData = new List<PieModel>();
+            pieData =CreateData(category, GetTotalAmount(category));
+            return pieData;
         }
 
         List<PieModel>CreateData(List<Category> category, double amount)
