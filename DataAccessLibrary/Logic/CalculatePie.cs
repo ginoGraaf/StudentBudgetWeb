@@ -21,7 +21,7 @@ namespace DataAccessLibrary.Logic
         public async Task<IEnumerable<PieModel>>GetPieData( int userID)
         {
             List<Category> category = new List<Category>();
-            category = await application.Categories.Where(c => c.User.Id == userID).ToListAsync();
+            category = await application.Categories.Where(c => c.UserId == userID).ToListAsync();
             List<PieModel> pieData = new List<PieModel>();
             pieData =CreateData(category, GetTotalAmount(category));
             return pieData;
