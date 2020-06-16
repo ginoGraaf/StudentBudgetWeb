@@ -21,6 +21,13 @@ namespace Rest.Controllers
         }
 
         [HttpGet]
+        [Route("ByUser/{userId}")]
+        public async Task<ActionResult<IEnumerable<Category>>> GetCategoriesByUserId(int userId)
+        {
+            return await _context.Categories.Where(c => c.UserId == userId).ToListAsync();
+        }
+
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
             return await _context.Categories.ToListAsync();
