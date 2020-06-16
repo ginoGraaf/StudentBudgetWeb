@@ -19,22 +19,14 @@ namespace Rest.Controllers
         {
             this._context = context;
         }
-        // GET: api/Pie
-        [HttpGet]
-        public List<PieModel> GetPieData()
-        {
-            List<PieModel> pieModels = new List<PieModel>();
-            CalculatePie calculatePie = new CalculatePie(this._context);
-            pieModels = calculatePie.GetPieData();
-
-            return pieModels;
-        }
 
         // GET: api/Pie/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public ActionResult<IEnumerable<PieModel>> Get(int id)
         {
-            return "value";
+            CalculatePie calculatePie = new CalculatePie(this._context);
+
+                return Ok(calculatePie.GetPieData(id));
         }
 
 

@@ -22,13 +22,14 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
     name: "ExpenseOverview",
     computed: {
-        ...mapGetters('expenses', ['allExpenses'])
+        ...mapGetters('expenses', ['allExpenses']),
+        ...mapGetters('account', ['user'])
     },
     methods: {
         ...mapActions('expenses', ['getAll'])
     },
     created() {
-        this.getAll()
+        this.getAll(this.user.id)
     }
 }
 </script>
