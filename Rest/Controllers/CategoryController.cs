@@ -20,27 +20,17 @@ namespace Rest.Controllers
         }
 
         [HttpGet]
-        [Route("ByUser/{Id}")]
+        [Route("ByUser/{userId}")]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategoriesByUserId(int userId)
         {
-            List<Category> categoryList = await _context.Categories.ToListAsync();
-
-            foreach (Category item in _context.Categories)
-            {
-                if (item.User.Id == userId)
-                {
-                    categoryList.Add(item);
-                }
-            }
-
-            return categoryList;
+            return await _context.Categories.Where(c => c.UserId == userId).ToListAsync();
         }
 
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
-        //{
-        //    return await _context.Categories.ToListAsync();
-        //}
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
+        {
+            return await _context.Categories.ToListAsync();
+        }
 
         [HttpGet]
         [Route("{Id}")]

@@ -67,6 +67,7 @@ export default {
             this.errorStatus = error.response.data.message;
         }
       })
+      
   },
   data() {
     return {
@@ -83,7 +84,7 @@ export default {
     },
     createCategory(newCategory) {
       if(newCategory.title != "") {
-        let TestForURL={Id:0,Title:newCategory.title,Bedrag:0,ByUser:newCategory.userid};
+        let TestForURL={Id:0,Title:newCategory.title,Bedrag:0,userId:this.user.id};
         const url = '/localhost/api/Category';
         axios.post(url, TestForURL, {headers:{'Content-Type': 'application/json'}});
       }
