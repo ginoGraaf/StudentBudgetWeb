@@ -24,9 +24,9 @@ namespace Rest.Controllers
         [HttpGet("{id}", Name = "Get")]
         public ActionResult<IEnumerable<PieModel>> Get(int id)
         {
-            //CalculatePie calculatePie = new CalculatePie(this._context);
+            CalculatePie calculatePie = new CalculatePie(this._context);
 
-            return null; // Ok(calculatePie.GetPieData(id));
+            return Ok(calculatePie.GetPieData(id));
         }
 
 

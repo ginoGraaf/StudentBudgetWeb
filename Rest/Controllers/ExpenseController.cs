@@ -45,7 +45,7 @@ namespace Rest.Controllers
         [HttpGet("byUserId/{id}")]
         public async Task<ActionResult<IEnumerable<Expense>>> GetExpensesByUserId(int id) 
         {
-            return await _context.Expenses.Where(e => e.User.Id == id).ToListAsync();
+            return await _context.Expenses.Where(e => e.UserId == id).ToListAsync();
         }
 
         // PUT: api/Expense/5
