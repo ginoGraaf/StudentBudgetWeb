@@ -15,7 +15,5 @@ namespace DataAccessLibrary
         public string Title { get; set; }
         public double Bedrag { get; set; }
         public User User { get; set; }
-        [ForeignKey("UserId")]
-        public int UserId { get; set; }
     }
 }
