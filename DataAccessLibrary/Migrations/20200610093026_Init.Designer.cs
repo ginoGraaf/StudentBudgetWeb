@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLibrary.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200610080705_Removing Category Trying to fix other stuff")]
-    partial class RemovingCategoryTryingtofixotherstuff
+    [Migration("20200610093026_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,29 @@ namespace DataAccessLibrary.Migrations
                 .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("DataAccessLibrary.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("Bedrag")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Categories");
+                });
 
             modelBuilder.Entity("DataAccessLibrary.Expense", b =>
                 {
@@ -47,27 +70,25 @@ namespace DataAccessLibrary.Migrations
                     b.ToTable("Expenses");
                 });
 
-            modelBuilder.Entity("DataAccessLibrary.Models.Category", b =>
+            modelBuilder.Entity("DataAccessLibrary.SavingGoalsModel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("Bedrag")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Title")
+                    b.Property<string>("GoalName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserID")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<string>("savingAmount")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("UserId");
+                    b.HasKey("ID");
 
-                    b.ToTable("Categories");
+                    b.ToTable("SavingGoals");
                 });
 
             modelBuilder.Entity("DataAccessLibrary.User", b =>
@@ -93,14 +114,14 @@ namespace DataAccessLibrary.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("DataAccessLibrary.Expense", b =>
+            modelBuilder.Entity("DataAccessLibrary.Category", b =>
                 {
                     b.HasOne("DataAccessLibrary.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("DataAccessLibrary.Models.Category", b =>
+            modelBuilder.Entity("DataAccessLibrary.Expense", b =>
                 {
                     b.HasOne("DataAccessLibrary.User", "User")
                         .WithMany()
