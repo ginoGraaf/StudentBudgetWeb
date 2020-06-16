@@ -30,13 +30,14 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
     name: 'ExpenseOverviewPage',
     computed: {
-        ...mapGetters('expenses', ['allExpenses'])
+        ...mapGetters('expenses', ['allExpenses']),
+        ...mapGetters('account', ['user'])
     },
     methods: {
         ...mapActions('expenses', ['getAll', 'deleteExpense'])
     },
     created() {
-        this.getAll()
+        this.getAll(this.user.id)
     }
 }
 </script>
