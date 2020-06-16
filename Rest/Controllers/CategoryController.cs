@@ -1,8 +1,9 @@
-﻿using System;
+
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using DataAccessLibrary;
+using DataAccessLibrary.Logic;
+using DataAccessLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -37,6 +38,8 @@ namespace Rest.Controllers
 
             return category;
         }
+
+
 
         [HttpPost]
         public async Task<ActionResult<Category>> PostCategory(Category category)

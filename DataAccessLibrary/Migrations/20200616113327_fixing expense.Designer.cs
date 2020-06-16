@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLibrary.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200602134111_AddFloat")]
-    partial class AddFloat
+    [Migration("20200616113327_fixing expense")]
+    partial class fixingexpense
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.4")
+                .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -34,7 +34,12 @@ namespace DataAccessLibrary.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Categories");
                 });
@@ -46,8 +51,8 @@ namespace DataAccessLibrary.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
+                    b.Property<string>("Amount")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
@@ -57,6 +62,9 @@ namespace DataAccessLibrary.Migrations
 
                     b.Property<string>("Regulation")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -78,8 +86,8 @@ namespace DataAccessLibrary.Migrations
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
-                    b.Property<float>("savingAmount")
-                        .HasColumnType("real");
+                    b.Property<string>("savingAmount")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -107,6 +115,13 @@ namespace DataAccessLibrary.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("DataAccessLibrary.Category", b =>
+                {
+                    b.HasOne("DataAccessLibrary.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("DataAccessLibrary.Expense", b =>
