@@ -6,8 +6,8 @@ const state = () => ({
 })
 
 const actions = {
-    getAll({commit}) {
-        commit('getAllCommit', expenseService.getAll())
+    getAll({commit}, id) {
+        commit('getAllCommit', expenseService.getAll(id))
     },
     getById({commit}, id) {
         commit('getByIdCommit', expenseService.getById(id))
