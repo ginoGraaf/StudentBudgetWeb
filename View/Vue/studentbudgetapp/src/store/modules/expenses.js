@@ -11,6 +11,11 @@ const actions = {
     },
     getById({commit}, id) {
         commit('getByIdCommit', expenseService.getById(id))
+    },
+    deleteExpense({commit}, id) {
+        expenseService.deleteById(id)
+        this.getAll()
+        commit('deleteExpense')
     }
 }
 
@@ -20,6 +25,9 @@ const mutations = {
     },
     getByIdCommit(state, expense) {
         expense.then(resp => {state.singleExpense = resp})
+    },
+    deleteExpense() {
+        console.log('Expense deleted')
     }
 }
 
