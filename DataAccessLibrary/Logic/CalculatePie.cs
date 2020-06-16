@@ -27,34 +27,34 @@ namespace DataAccessLibrary.Logic
         //    return pieData;
         //}
 
-        //List<PieModel>CreateData(List<Category> category, double amount)
-        //{
-        //    Random rnd;
-        //    List<PieModel> pieData = new List<PieModel>();
-        //    for (int i = 0; i < category.Count; i++)
-        //    {
-        //        decimal Precentage = 0;
-        //        rnd = new Random(new System.DateTime().Millisecond);
-        //        string colorName = Color.FromArgb(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255)).ToString();
+        List<PieModel>CreateData(List<Category> category, double amount)
+        {
+            Random rnd;
+            List<PieModel> pieData = new List<PieModel>();
+            for (int i = 0; i < category.Count; i++)
+            {
+                double Precentage = 0;
+                rnd = new Random(new System.DateTime().Millisecond);
+                string colorName = Color.FromArgb(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255)).ToString();
 
-        //        if (Convert.ToDecimal(expenses[i].Amount) > 0.00m)
-        //        {
-        //            Precentage = Convert.ToDecimal(expenses[i].Amount) / amount * 100;
-        //        }
-        //        PieModel pieDataInfo = new PieModel(category[i].Title, colorName, (int)Precentage);
-        //        pieData.Add(pieDataInfo);
-        //    }
-        //    return pieData;
-        //}
+                if (Convert.ToDecimal(category[i].Bedrag) > 0.00m)
+                {
+                    Precentage = category[i].Bedrag / amount * 100;
+                }
+                PieModel pieDataInfo = new PieModel(category[i].Title, colorName, (int)Precentage);
+                pieData.Add(pieDataInfo);
+            }
+            return pieData;
+        }
 
-        //double GetTotalAmount(List<Category> category)
-        //{
-        //    double amount = 0;
-        //    for (int i = 0; i < category.Count; i++)
-        //    {
-        //        amount += Convert.ToDecimal(expenses[i].Amount);   
-        //    }
-        //    return amount;
-        //}
+        double GetTotalAmount(List<Category> category)
+        {
+            double amount = 0;
+            for (int i = 0; i < category.Count; i++)
+            {
+                amount += category[i].Bedrag;   
+            }
+            return amount;
+        }
     }
 }
