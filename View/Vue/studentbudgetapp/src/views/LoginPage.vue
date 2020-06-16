@@ -3,7 +3,7 @@
         <h2>Login</h2>
         <form @submit.prevent="handleSubmit">
             <div class="form-group">
-                <label for="username">Username</label>
+                <label for="username">Email address</label>
                 <input type="text" v-model="username" name="username" class="form-control" :class="{ 'is-invalid': submitted && !username }" />
                 <div v-show="submitted && !username" class="invalid-feedback">Username is required</div>
             </div>
