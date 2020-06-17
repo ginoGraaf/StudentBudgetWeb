@@ -10,6 +10,7 @@
 
 <script>
 import axios from 'axios';
+import { mapGetters } from 'vuex';
 
 export default {
     name: 'ChooseCategory',
@@ -19,6 +20,7 @@ export default {
             categories: []
         }
     },
+    computed: mapGetters('account', ['user']),
     methods: {
         emitCategory() {
             console.log('emitCategory', this.selected)
@@ -26,7 +28,9 @@ export default {
         }
     },
     created() {
-        axios.get('https://localhost:5001/api/Category/').then(res => this.categories = res.data).catch(err => console.log(err));
+        axios.get('/localhost/api/Category/ByUser/' + this.user.id)
+      .then(response => this.categories = response.data )
+      .catch(error => console.log(error));
     }
 }
 </script>
