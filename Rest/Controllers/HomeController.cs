@@ -41,21 +41,21 @@ namespace Rest.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 
         }
-        public double CalculateAverage(DbSet<Expense> expenses)
+        public decimal CalculateAverage(DbSet<Expense> expenses)
         {
-            double amount = expenses.Count();
-            double average;
+            decimal amount = expenses.Count();
+            decimal average;
 
             average = TotalExpenses(expenses) / amount;
             return average;
         }
 
-        private double TotalExpenses(DbSet<Expense> expenses)
+        private decimal TotalExpenses(DbSet<Expense> expenses)
         {
-            double TotalExpenses = 0;
+            decimal TotalExpenses = 0;
             foreach (var item in expenses)
             {
-               TotalExpenses += (double)item.Amount;
+               TotalExpenses += Convert.ToDecimal(item.Amount);
             }
             return TotalExpenses;
         }
