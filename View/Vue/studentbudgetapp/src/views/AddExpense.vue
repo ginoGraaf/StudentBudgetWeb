@@ -25,7 +25,7 @@ import ChooseCategory from '../components/ChooseCategory.vue';
 import RegularExpense from '../components/RegularExpense.vue';
 
 import axios from 'axios';
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
 
 
 export default {
