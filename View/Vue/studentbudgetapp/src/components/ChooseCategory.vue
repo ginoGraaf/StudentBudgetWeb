@@ -28,7 +28,7 @@ export default {
         }
     },
     created() {
-        axios.get('/localhost/api/Category/ByUser/' + userId)
+        axios.get('/localhost/api/Category/ByUser/' + this.user.id)
       .then(response => this.categories = response.data )
       .catch(error => console.log(error));
     }
