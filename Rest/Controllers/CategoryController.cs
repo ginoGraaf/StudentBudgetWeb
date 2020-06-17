@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using DataAccessLibrary;
 using DataAccessLibrary.Logic;
@@ -18,6 +19,13 @@ namespace Rest.Controllers
         public CategoryController(ApplicationContext context)
         {
             _context = context;
+        }
+
+        [HttpGet]
+        [Route("ByUser/{userId}")]
+        public async Task<ActionResult<IEnumerable<Category>>> GetCategoriesByUserId(int userId)
+        {
+            return await _context.Categories.Where(c => c.UserId == userId).ToListAsync();
         }
 
         [HttpGet]

@@ -8,8 +8,8 @@ export const expenseService = {
     deleteById
 }
 
-async function getAll() {
-    return await axios.get(`${config.apiUrl}/Expense/`, {headers: config.headers})
+async function getAll(id) {
+    return await axios.get(`${config.apiUrl}/Expense/byUserId/${id}`, {headers: config.headers})
         .then(resp => {return resp.data})
     // return {
     //        expenses: [

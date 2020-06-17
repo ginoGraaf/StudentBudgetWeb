@@ -41,6 +41,13 @@ namespace Rest.Controllers
             return expense;
         }
 
+        // GET: api/Expense/byUserId
+        [HttpGet("byUserId/{id}")]
+        public async Task<ActionResult<IEnumerable<Expense>>> GetExpensesByUserId(int id) 
+        {
+            return await _context.Expenses.Where(e => e.UserId == id).ToListAsync();
+        }
+
         // PUT: api/Expense/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
