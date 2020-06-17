@@ -8,22 +8,39 @@
 
 import Pie from './Pie'
 import axios from 'axios'
+
+import { mapGetters } from 'vuex'
 export default {
     components:{
-        Pie
+        Pie,
+        
     },
         props: ["categories"],
+        computed: mapGetters('account', ['user']),
   data:()=>
   {
     return{
+      data:[],
       pieData:[],
-      Category:[]
     };
   },
  mounted:function()
 {
-  console.log(this.categories);
-  axios.get('/localhost/api/Pie').then(Response=>this.pieData=Response.data).then(response => console.log(response)).catch(error => {
+  axios.get('/localhost/api/Pie/'+this.user.id).then((response) => 
+  {
+    console.log(response.data); 
+    this.data=response.data;
+
+    var i=0;
+    for (i=0; i<this.data.length;i++)
+    {
+      let convertData={color:"",value:0};
+      convertData.color=this.data[i].color;
+      convertData.value=this.data[i].precentage;
+      this.pieData.push(convertData);
+    }
+  }).catch(error => 
+  {
         if (!error.response) {
             // network error
             console.log("No Data was send to");

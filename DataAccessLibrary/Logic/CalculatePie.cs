@@ -18,10 +18,10 @@ namespace DataAccessLibrary.Logic
         }
 
         //later make this user ID.
-        public async Task<IEnumerable<PieModel>> GetPieData(int userID)
+        public List<PieModel> GetPieData(int userID)
         {
             List<Category> category = new List<Category>();
-            category = await application.Categories.Where(c => c.UserId == userID).ToListAsync();
+            category =  application.Categories.Where(c => c.UserId == userID).ToList();
             List<PieModel> pieData = new List<PieModel>();
             pieData = CreateData(category, GetTotalAmount(category));
             return pieData;
@@ -34,10 +34,16 @@ namespace DataAccessLibrary.Logic
             for (int i = 0; i < category.Count; i++)
             {
                 double Precentage = 0;
-                rnd = new Random(new System.DateTime().Millisecond);
-                string colorName = Color.FromArgb(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255)).ToString();
+                rnd = new Random(1);
+                Color color = new Color();
+                color = Color.FromArgb(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255));
+                string colorName = ColorTranslator.ToHtml(color).ToString();
+                if(category.Count==1)
+                {
+                    Precentage = 100;
+                }
 
-                if (Convert.ToDecimal(category[i].Bedrag) > 0.00m)
+                else if (Convert.ToDecimal(category[i].Bedrag) > 0.00m)
                 {
                     Precentage = category[i].Bedrag / amount * 100;
                 }
