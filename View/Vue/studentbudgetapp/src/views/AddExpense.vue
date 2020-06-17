@@ -25,6 +25,8 @@ import ChooseCategory from '../components/ChooseCategory.vue';
 import RegularExpense from '../components/RegularExpense.vue';
 
 import axios from 'axios';
+import { mapGetters } from 'vuex';
+
 
 export default {
   name: 'AddExpense',
@@ -32,6 +34,7 @@ export default {
     ChooseCategory,
     RegularExpense
   },
+  computed: mapGetters('account', ['user']),
   data(){
     return{
       name: '',
@@ -58,8 +61,10 @@ export default {
             name: this.name,
             amount: this.amount,
             regularExpense: this.regularExpense,
-            category: this.category
+            category: this.category,
+            user: this.user.id
         }
+        console.log('user = ' + this.user)
         axios.post('/localhost/api/Expense/', newExpense)
         .then()
         .catch(error => console.log(error));

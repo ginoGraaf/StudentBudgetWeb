@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import { uuid } from 'vue-uuid';
 export default {
     name: "AddCategory",
     data() {
@@ -19,7 +18,6 @@ export default {
     methods: {
     addCategory() {
         const newCategory = {
-            id: uuid.v4(),
             title: this.title
         }
         this.$emit('add-category', newCategory);

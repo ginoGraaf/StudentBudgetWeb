@@ -11,10 +11,12 @@ namespace DataAccessLibrary
     {
         [Key]
         public int Id { get; set; }
-        public User User { get; set; }
+        [ForeignKey("UserId")]
+        public int UserId { get; set; }
         public string Name { get; set; }
         public string Amount { get; set; }
-        public Category Category { get; set; }
+        [ForeignKey("CategoryId")]
+        public int CategoryId { get; set; }
         public string Regulation { get; set; }
     }
 }
