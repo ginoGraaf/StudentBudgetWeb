@@ -1,16 +1,8 @@
 name: Docker
 
 on:
+  # Run on every push
   push:
-    # Publish `master` as Docker `latest` image.
-    branches:
-      - master
-      - dev
-
-    # Publish `v1.2.3` tags as releases.
-    tags:
-      - v*
-
   # Run tests for any PRs.
   pull_request:
 

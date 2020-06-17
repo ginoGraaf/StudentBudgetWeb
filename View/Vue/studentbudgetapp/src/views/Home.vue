@@ -40,6 +40,7 @@ import AddCategory from '../components/AddCategory';
 
 import Vue from 'vue'
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Home',
@@ -53,8 +54,10 @@ export default {
     PieComponent,
     userInfo
   },
+  computed: mapGetters('account', ['user']),
   mounted: function () {
-    axios.get('/localhost/api/Category')
+    var userId = this.user.id;
+    axios.get('/localhost/api/Category/ByUser/' + userId)
       .then(response => this.categories = response.data )
       .catch(error => {
         if (!error.response) {
@@ -64,6 +67,7 @@ export default {
             this.errorStatus = error.response.data.message;
         }
       })
+      
   },
   data() {
     return {
@@ -81,7 +85,7 @@ export default {
     },
     createCategory(newCategory) {
       if(newCategory.title != "") {
-        let TestForURL={Id:0,Title:newCategory.title,Bedrag:0};
+        let TestForURL={Id:0,Title:newCategory.title,Bedrag:0,userId:this.user.id};
         const url = '/localhost/api/Category';
         axios.post(url, TestForURL, {headers:{'Content-Type': 'application/json'}});
       }
