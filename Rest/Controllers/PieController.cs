@@ -25,8 +25,8 @@ namespace Rest.Controllers
         public ActionResult<IEnumerable<PieModel>> Get(int id)
         {
             CalculatePie calculatePie = new CalculatePie(this._context);
-
-            return Ok(calculatePie.GetPieData(id));
+            List<PieModel> piemodels = calculatePie.GetPieData(id);
+            return Ok(piemodels);
         }
 
 
