@@ -33,7 +33,6 @@ export default {
                 Email: '',
                 Password: ''
             },
-            submitted: false
         }
     },
     computed: {
