@@ -7,6 +7,7 @@ COPY DataAccessLibrary/*.csproj ./DataAccessLibrary/
 RUN dotnet restore
 
 COPY . ./
+RUN dotnet test
 WORKDIR /app/Rest
 RUN dotnet publish -c Release -o out
 
