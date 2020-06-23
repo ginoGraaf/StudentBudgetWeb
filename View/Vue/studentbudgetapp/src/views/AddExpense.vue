@@ -55,16 +55,15 @@ export default {
       this.category = chosenCategory;
     },
     addExpense() {
-        console.log('addExpense' + this.regularExpense);
-
         const newExpense = {
             name: this.name,
             amount: this.amount,
             regularExpense: this.regularExpense,
-            category: this.category,
+            category: this.category.id,
             user: this.user.id
         }
-        console.log('user = ' + this.user)
+        console.log(newExpense);
+        console.log('user = ' + this.user.id);
         axios.post('/localhost/api/Expense/', newExpense)
         .then()
         .catch(error => console.log(error));

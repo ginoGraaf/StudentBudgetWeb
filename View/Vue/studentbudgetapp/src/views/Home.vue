@@ -82,7 +82,6 @@ export default {
       })
     },
     createCategory(newCategory) {
-      var userId = this.user.id;
       if(newCategory.title != "") {
         let TestForURL={Id:0,Title:newCategory.title,Bedrag:0,userId:this.user.id};
         const url = '/localhost/api/Category';
