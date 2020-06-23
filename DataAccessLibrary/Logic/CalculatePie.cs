@@ -34,7 +34,7 @@ namespace DataAccessLibrary.Logic
             for (int i = 0; i < category.Count; i++)
             {
                 double Precentage = 0;
-                rnd = new Random(1);
+                rnd = new Random(i);
                 Color color = new Color();
                 color = Color.FromArgb(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255));
                 string colorName = ColorTranslator.ToHtml(color).ToString();

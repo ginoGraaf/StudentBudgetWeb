@@ -4,9 +4,10 @@
       <div class="col-sm-4 text-center">
         <div class="item">
           <OverViewHeader />
-          <ExpenseOverview/>
+          <ExpenseOverview/>  
         </div>
       </div>
+      
       <div class="col-sm-4 text-center">
         <div class="item">
           <ExpensesHeader />
