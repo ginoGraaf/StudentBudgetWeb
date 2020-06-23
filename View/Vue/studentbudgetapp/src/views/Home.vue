@@ -58,7 +58,7 @@ export default {
   mounted: function () {
     var userId = this.user.id;
     axios.get('/localhost/api/Category/ByUser/' + userId)
-      .then(response => this.categories = response.data )
+      .then(response => this.categories = response.data)
       .catch(error => {
         if (!error.response) {
             // network error
@@ -83,10 +83,11 @@ export default {
     },
     createCategory(newCategory) {
       if(newCategory.title != "") {
-        let TestForURL={Id:0,Title:newCategory.title,Bedrag:0,userId:this.user.id};
+        let TestForURL={Id:0,Title:newCategory.title,Bedrag:0,userId:userId};
         const url = '/localhost/api/Category';
         axios.post(url, TestForURL, {headers:{'Content-Type': 'application/json'}});
-        this.$forceUpdate();
+        axios.get('/localhost/api/Category/ByUser/' + userId)
+        .then(response => this.categories = response.data);
       }
       else{
         alert("missing title!");
